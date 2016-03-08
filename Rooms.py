@@ -4,9 +4,8 @@
 
 class Rooms(object):
 
-    def __init__(self, maxpeople, rooms, name):
+    def __init__(self, maxpeople, name):
         self.maxpeople = maxpeople
-        self.rooms = rooms
         self.name = name
         pass
 

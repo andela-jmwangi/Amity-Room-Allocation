@@ -14,6 +14,7 @@ class DatabaseManager(object):
         self.conn = sqlite3.connect(db)
         self.conn.commit()
         self.cur = self.conn.cursor()
+        self.createtables()
 
     """Performs a query to the database based on the supplied
     query string.This method then returns the cursor object to the
@@ -31,3 +32,45 @@ class DatabaseManager(object):
     def __del__(self):
         # Closes the connection to the database to prevent database locks
         self.conn.close()
+
+    """Returns list of predefined rooms
+    """
+
+    def initrooms(self):
+        listoffices = [['Valhalla', 6, 'OFFICE'],
+                       ['Turqois', 4, 'OFFICE'],
+                       ['Oculus', 5, 'OFFICE'],
+                       ['Hogwarts', 6, 'OFFICE'],
+                       ['Camelot', 4, 'OFFICE'],
+                       ['Midgar', 2, 'OFFICE'],
+                       ['Mordor', 3, 'OFFICE'],
+                       ['Narnia', 5, 'OFFICE'],
+                       ['Shire', 3, 'OFFICE'],
+                       ['Quiet-Room', 4, 'OFFICE']]
+
+        listlivingspaces = [['Blue', 4, 'LIVING'],
+                            ['Red', 3, 'LIVING'],
+                            ['Amber', 2, 'LIVING'],
+                            ['Yellow', 4, 'LIVING'],
+                            ['Brown', 3, 'LIVING'],
+                            ['Green', 4, 'LIVING'],
+                            ['Pink', 4, 'LIVING'],
+                            ['Purple', 3, 'LIVING'],
+                            ['Violet', 2, 'LIVING'],
+                            ['White', 4, 'LIVING']]
+
+        rooms = listoffices + listlivingspaces
+        return rooms
+
+    """Creates database tables if they does not exist
+    """
+
+    def createtables(self):
+        self.query(
+            "CREATE Table Staff if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL")
+        self.query(
+            "CREATE Table Rooms if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Maxppl INT NOT NULL, Category TEXT NOT NULL")
+        roomslist = self.initrooms()
+        for entry in roomslist:
+            self.query("INSERT INTO Rooms VALUES '" +
+                       entry[0] + "', '" + entry[1] + "', '" + entry[2] + "'")

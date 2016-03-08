@@ -1,8 +1,8 @@
-"""This class stores details of staff
+"""This class stores details of personnel
 """
 
 
-class Staff(object):
+class Personnel(object):
 
     def __init__(self, name, residing, category):
         self.name = name
@@ -10,13 +10,13 @@ class Staff(object):
         self.category = category
         pass
 
-        """returns a list of staff who have been allocated rooms
+        """returns a list of personnel who have been allocated rooms
         """
     def getallocated():
     	
     	pass
 
-        """returns a list of staff who have not been allocated rooms
+        """returns a list of personnel who have not been allocated rooms
         """
     def getunallocated():
         
