@@ -14,7 +14,8 @@ class DatabaseManager(object):
         self.conn = sqlite3.connect(db)
         self.conn.commit()
         self.cur = self.conn.cursor()
-        self.createtables()
+        if self.gettablecount() == 0:
+            self.createtables()
 
     """Performs a query to the database based on the supplied
     query string.This method then returns the cursor object to the
@@ -64,6 +65,13 @@ class DatabaseManager(object):
 
     """Creates database tables if they does not exist
     """
+
+    def gettablecount(self):
+        cursor = self.query(
+            "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name")
+        # .fetchall returns a tuple of tuples of tablenames which we convert to a list
+        tables = map(lambda t: t[0], cursor.fetchall())
+        return len(tables)
 
     def createtables(self):
         self.query(
