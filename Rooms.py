@@ -4,21 +4,22 @@
 
 class Rooms(object):
 
-    def __init__(self, maxpeople, name):
+    def __init__(self, maxpeople, name, category):
         self.maxpeople = maxpeople
         self.name = name
+        self.category = category
         pass
 
-        """gets a list of staff allocated to a specific room or all rooms in general 
+        """gets a list of staff allocated to a specific room or all rooms in general
         """
     def getallocations(room):
 
-    	pass
+        pass
 
       """prints a list of all room allocations
       """ 
     def printallocations():
 
-    	pass 
+        pass 
 
     def 
