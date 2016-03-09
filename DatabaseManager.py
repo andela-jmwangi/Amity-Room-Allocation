@@ -37,7 +37,7 @@ class DatabaseManager(object):
     """Returns list of predefined rooms
     """
 
-    def initrooms(self):
+    def getrooms(self):
         listoffices = [['Valhalla', 6, 'OFFICE'],
                        ['Turqois', 4, 'OFFICE'],
                        ['Oculus', 5, 'OFFICE'],
@@ -77,8 +77,8 @@ class DatabaseManager(object):
         self.query(
             "CREATE Table Staff if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL")
         self.query(
-            "CREATE Table Rooms if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Maxppl INT NOT NULL, Category TEXT NOT NULL")
-        roomslist = self.initrooms()
+            "CREATE Table Rooms if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Maxppl INT NOT NULL, Room_type TEXT NOT NULL")
+        roomslist = self.getrooms()
         for entry in roomslist:
             self.query("INSERT INTO Rooms VALUES '" +
                        entry[0] + "', '" + entry[1] + "', '" + entry[2] + "'")

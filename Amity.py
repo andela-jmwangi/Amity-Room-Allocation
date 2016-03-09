@@ -13,7 +13,7 @@ Options:
     -h, --help  Shows a list of commands and their usage.
 """
 
-from Tkinter import Tk, Label
+from Tkinter import Tk
 import tkFileDialog
 from tkFileDialog import askopenfilename
 import sys
@@ -23,7 +23,9 @@ from colorama import init, Fore, Back, Style
 from termcolor import cprint
 from pyfiglet import figlet_format
 from Fileparser import Fileparser
+from DatabaseManager import DatabaseManager
 import easygui
+from random import randint
 
 # compares the arguments to determine if all have been entered in correct
 # manner
@@ -96,20 +98,33 @@ def viewallocations(docopt_args):
     pass
 
 
+def allocate(**kwargs):
+    db = DatabaseManager("Amity.sqlite")
+    allrooms = db.getrooms()
+    randomvalues = random.sample(range(1, len(allrooms)), len(allrooms) - 1)
+    for key, value in kwargs.iteritems():
+        pass
+
+
 def allocaterooms(docopt_args):
     root = Tk()
     root.withdraw()
     root.update()
-    file  = tkFileDialog.askopenfile(parent=root,mode='rb',title='Choose a file')
+    file = tkFileDialog.askopenfile(
+        parent=root, mode='rb', title='Choose a file')
     if file:
-        #read file to get list
+        # read file to get list
         parser = Fileparser(file.name)
         inputlist = parser.getlinecontents()
-        print inputlist
+        for element in inputlist:
+            for part in element:
+                print part
+
+        allocate()
+
     else:
         print("You did not select a file")
     root.destroy()
-    
 
 
 def showwelcomemsg():
@@ -124,7 +139,6 @@ def showwelcomemsg():
 """
 
 if opt['--start']:
-   
 
     showwelcomemsg()
     Amity().cmdloop()  # creates the REPL
