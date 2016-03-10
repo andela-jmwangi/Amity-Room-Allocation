@@ -1,3 +1,5 @@
+from DatabaseManager import DatabaseManager
+
 """This class stores details of personnel
 """
 
@@ -10,25 +12,30 @@ class Personnel(object):
         self.category = category
         pass
 
-        """returns a list of personnel who have been allocated rooms
-        """
+    """returns a list of personnel who have been allocated rooms
+    """
     def getallocated():
-    	
-    	pass
-
-        """returns a list of personnel who have not been allocated rooms
-        """
-    def getunallocated():
-        
         pass
 
-      """prints a list of all room allocations
-      """ 
-    def printallocations():
+    """returns a list of personnel who have not been allocated rooms
+    """
+    def getunallocated():
+        pass
 
-    	pass 
+    """prints a list of all room allocations
+    """
+
+    def printallocations():
+        pass
 
         """returns a list of all room allocations
         """
     def getallallocations():
+        pass
+
+    """returns the room name the specific person has been allocated
+    """
+
+    def getroomallocated(roomtype):
+
         pass

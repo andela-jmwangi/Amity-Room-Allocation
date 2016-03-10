@@ -14,7 +14,7 @@ class DatabaseManager(object):
         self.conn = sqlite3.connect(db)
         self.conn.commit()
         self.cur = self.conn.cursor()
-        if self.gettablecount() == 0:
+        if self.gettablecount() < 2:
             self.createtables()
 
     """Performs a query to the database based on the supplied
@@ -75,10 +75,12 @@ class DatabaseManager(object):
 
     def createtables(self):
         self.query(
-            "CREATE Table Staff if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL")
+            "CREATE Table if not exists Allocations (_id INTEGER PRIMARY KEY AUTOINCREMENT, Personnel_Name TEXT NOT NULL, Room_type TEXT NOT NULL, Room_name TEXT NOT NULL)")
         self.query(
-            "CREATE Table Rooms if not exists _id INT Primary Key Auto Increment Not Null, Name TEXT NOT NULL, Maxppl INT NOT NULL, Room_type TEXT NOT NULL")
+            "CREATE Table if not exists Staff (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL)")
+        self.query(
+            "CREATE Table if not exists Rooms (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Maxppl INT NOT NULL,Curppl INT NOT NULL, Room_type TEXT NOT NULL)")
         roomslist = self.getrooms()
         for entry in roomslist:
-            self.query("INSERT INTO Rooms VALUES '" +
-                       entry[0] + "', '" + entry[1] + "', '" + entry[2] + "'")
+            self.query("INSERT INTO Rooms (Name, Maxppl, Curppl, Room_type)VALUES ('" +
+                       entry[0] + "', '" + str(entry[1]) + "','0','" + entry[2] + "')")

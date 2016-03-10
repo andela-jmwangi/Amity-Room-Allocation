@@ -26,6 +26,7 @@ from Fileparser import Fileparser
 from DatabaseManager import DatabaseManager
 import easygui
 from random import randint
+from Allocations import Allocations
 
 # compares the arguments to determine if all have been entered in correct
 # manner
@@ -116,11 +117,11 @@ def allocaterooms(docopt_args):
         # read file to get list
         parser = Fileparser(file.name)
         inputlist = parser.getlinecontents()
-        for element in inputlist:
-            for part in element:
-                print part
-
-        allocate()
+        allocation = Allocations(inputlist)
+        allocation.allocate()
+        # for element in inputlist:
+        #     for part in element:
+        #         print part
 
     else:
         print("You did not select a file")
