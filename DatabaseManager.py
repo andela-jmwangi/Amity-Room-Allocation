@@ -75,7 +75,7 @@ class DatabaseManager(object):
 
     def createtables(self):
         self.query(
-            "CREATE Table if not exists Allocations (_id INTEGER PRIMARY KEY AUTOINCREMENT, Personnel_Name TEXT NOT NULL, Room_type TEXT NOT NULL, Room_name TEXT NOT NULL)")
+            "CREATE Table if not exists Allocations (_id INTEGER PRIMARY KEY AUTOINCREMENT, Personnel_Name TEXT NOT NULL, Room_type TEXT NOT NULL, Room_name TEXT NOT NULL,Personnel_type TEXT NOT NULL)")
         self.query(
             "CREATE Table if not exists Staff (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL)")
         self.query(

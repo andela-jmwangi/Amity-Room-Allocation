@@ -19,10 +19,11 @@ class Allocations(object):
     """
 
     def runallocations(self, personnel_name, personnel_type, residing):
-        #ipdb.set_trace(context=1)
-        
+        # ipdb.set_trace(context=1)
+
         self.personelallocation = Personnel(
-            personnel_name, residing, "FELLOW")
+            personnel_name, residing, personnel_type)
+        allocations_list = []
         qualifiedpersonsoffice = []
         qualifiedpersonsliving = []
         if residing == "Y":
@@ -45,6 +46,10 @@ class Allocations(object):
                         # There is an living space available, proceed to
                         # add to list of qualifiedpersonsliving
                         qualifiedpersonsliving.append(personnel_name)
+                        room_name = self.getrandomroom("OFFICE")
+                        allocations_list.append(
+                            (room_name, personnel_name))
+                        self.saveallocation(personnel_name, room_name, "OFFICE", personnel_type)
                     else:
                         # There is no living space available, thus inform
                         # user.
@@ -64,6 +69,10 @@ class Allocations(object):
                     # There is an office spot available, proceed to
                     # add to list of qualifiedpersonsoffice
                         qualifiedpersonsoffice.append(personnel_name)
+                        room_name = self.getrandomroom("OFFICE")
+                        allocations_list.append(
+                            (room_name, personnel_name))
+                        self.saveallocation(personnel_name, room_name, "OFFICE", personnel_type)
                     else:
                         # There is no office spot available, thus inform user.
                         print (
@@ -76,10 +85,14 @@ class Allocations(object):
                         personnel_name + " has already been allocated " + allocatedroom)
                 else:
                     # doesn't have living space thus add to allocate
-                    if self.areroomavailable("OFFICE"):
+                    if self.areroomavailable("LIVING"):
                         # There is an living space available, proceed to
                         # add to list of qualifiedpersonsliving
                         qualifiedpersonsliving.append(personnel_name)
+                        room_name = self.getrandomroom("LIVING")
+                        allocations_list.append(
+                            (room_name, personnel_name))
+                        self.saveallocation(personnel_name, room_name, "LIVING", personnel_type)
                     else:
                         # There is no living space available, thus inform
                         # user.
@@ -99,12 +112,18 @@ class Allocations(object):
                 # There is an office spot available, proceed to
                 # add to list of qualifiedpersonsoffice
                     qualifiedpersonsoffice.append(personnel_name)
+                    room_name = self.getrandomroom("OFFICE")
+                    allocations_list.append(
+                        (room_name, personnel_name))
+                    self.saveallocation(personnel_name, room_name, "OFFICE", personnel_type)
                 else:
                     # There is no office spot available, thus inform user.
                     print (
                         "Sorry all office spots have already been taken")
 
-        return {"living": qualifiedpersonsliving, "office": qualifiedpersonsoffice}
+        # return {"living": qualifiedpersonsliving, "office":
+        # qualifiedpersonsoffice}
+        return allocations_list
 
     def hasroom(self, personnel_name, room_type):
         # query db to check if name exists in Allocations table
@@ -156,18 +175,22 @@ class Allocations(object):
     """
 
     def getrandomroom(self, room_type):
-        allrooms = self.db.getrooms()
-        livingspaces = filter(lambda lvn: 'LIVING' in lvn, allrooms)
-        offices = filter(lambda lvn: 'OFFICE' in lvn, allrooms)
-        if room_type == "OFFICE":
-            return random.shuffle(offices)
-        else:
-            return random.shuffle(livingspaces)
+        availablerooms = []
+        availablerooms = self.getavailablerooms(room_type)
+        random.shuffle(availablerooms)
+        # ipdb.set_trace(context=1)
+        return str(availablerooms[0])
+
+    def saveallocation(self, personnel_name, room_name, room_type, personnel_type):
+        self.db.query("INSERT INTO Allocations (Personnel_Name, Room_name, Personnel_type, Room_type)VALUES ('" +
+                      personnel_name + "', '" + room_name + "','" + personnel_type + "','" + room_type + "')")
+        self.db.query(
+            "UPDATE Rooms set Curppl = Curppl + 1 where Name = '" + room_name + "'")
 
     def allocate(self):
         randomizedallocations = self.randomizelist(self.importedallocations)
         for element in randomizedallocations:
-            personnel_name = element[0]
+            personnel_name = element[0].replace("'", "")
             personnel_type = element[1]
             if len(element) == 3:
                 residing = element[2]

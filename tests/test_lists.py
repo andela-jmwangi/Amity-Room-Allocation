@@ -13,7 +13,6 @@ class ListTests(unittest.TestCase):
 
     def test_getrandomroom(self):
         allocations = Allocations.Allocations("")
-        db = DatabaseManager.DatabaseManager("Amity.sqlite")
-        actual_office_list = filter(lambda lvn: 'OFFICE' in lvn, db.getrooms())
-        randomized_office_list = allocations.getrandomroom("OFFICE")
-        self.assertFalse(actual_office_list == randomized_office_list)
+        actual_office = allocations.getavailablerooms("OFFICE")[0]
+        randomized_office = allocations.getrandomroom("OFFICE")
+        self.assertFalse(actual_office == randomized_office)

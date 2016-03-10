@@ -10,7 +10,7 @@ class Personnel(object):
         self.name = name
         self.residing = residing
         self.category = category
-        pass
+        self.db = DatabaseManager("Amity.sqlite")
 
     """returns a list of personnel who have been allocated rooms
     """
