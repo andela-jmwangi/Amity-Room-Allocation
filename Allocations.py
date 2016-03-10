@@ -21,8 +21,7 @@ class Allocations(object):
     def runallocations(self, personnel_name, personnel_type, residing):
         # ipdb.set_trace(context=1)
 
-        self.personelallocation = Personnel(
-            personnel_name, residing, personnel_type)
+        self.personelallocation = Personnel()
         allocations_list = []
         qualifiedpersonsoffice = []
         qualifiedpersonsliving = []
@@ -31,13 +30,13 @@ class Allocations(object):
             if self.hasroom(personnel_name, "OFFICE"):
                 # no need to allocate office, try allocate living space
                 allocatedroom = self.personelallocation.getroomallocated(
-                    "OFFICE")
+                    "OFFICE", personnel_name)
                 print (
                     personnel_name + " has already been allocated " + allocatedroom)
                 if self.hasroom(personnel_name, "LIVING"):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
-                        "LIVING")
+                        "LIVING", personnel_name)
                     print (
                         personnel_name + " has already been allocated " + allocatedroom)
                 else:
@@ -49,18 +48,19 @@ class Allocations(object):
                         room_name = self.getrandomroom("OFFICE")
                         allocations_list.append(
                             (room_name, personnel_name))
-                        self.saveallocation(personnel_name, room_name, "OFFICE", personnel_type)
+                        self.saveallocation(
+                            personnel_name, room_name, "OFFICE", personnel_type)
                     else:
                         # There is no living space available, thus inform
                         # user.
-                        print (
-                            "Sorry all living spaces have already been taken")
+                        print (personnel_name +
+                            " => Sorry all living spaces have already been taken")
             else:
                 # allocate only office
                 if self.hasroom(personnel_name, "OFFICE"):
                     # person already has a room so no need to allocate
                     allocatedroom = self.personelallocation.getroomallocated(
-                        "OFFICE")
+                        "OFFICE", personnel_name)
                     print (
                         personnel_name + " has already been allocated " + allocatedroom)
                 else:
@@ -72,7 +72,8 @@ class Allocations(object):
                         room_name = self.getrandomroom("OFFICE")
                         allocations_list.append(
                             (room_name, personnel_name))
-                        self.saveallocation(personnel_name, room_name, "OFFICE", personnel_type)
+                        self.saveallocation(
+                            personnel_name, room_name, "OFFICE", personnel_type)
                     else:
                         # There is no office spot available, thus inform user.
                         print (
@@ -80,7 +81,7 @@ class Allocations(object):
                 if self.hasroom(personnel_name, "LIVING"):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
-                        "LIVING")
+                        "LIVING", personnel_name)
                     print (
                         personnel_name + " has already been allocated " + allocatedroom)
                 else:
@@ -92,7 +93,8 @@ class Allocations(object):
                         room_name = self.getrandomroom("LIVING")
                         allocations_list.append(
                             (room_name, personnel_name))
-                        self.saveallocation(personnel_name, room_name, "LIVING", personnel_type)
+                        self.saveallocation(
+                            personnel_name, room_name, "LIVING", personnel_type)
                     else:
                         # There is no living space available, thus inform
                         # user.
@@ -103,7 +105,7 @@ class Allocations(object):
             if self.hasroom(personnel_name, "OFFICE"):
                 # person already has a room so no need to allocate
                 allocatedroom = self.personelallocation.getroomallocated(
-                    "OFFICE")
+                    "OFFICE", personnel_name)
                 print (
                     personnel_name + " has already been allocated " + allocatedroom)
             else:
@@ -115,7 +117,8 @@ class Allocations(object):
                     room_name = self.getrandomroom("OFFICE")
                     allocations_list.append(
                         (room_name, personnel_name))
-                    self.saveallocation(personnel_name, room_name, "OFFICE", personnel_type)
+                    self.saveallocation(
+                        personnel_name, room_name, "OFFICE", personnel_type)
                 else:
                     # There is no office spot available, thus inform user.
                     print (
@@ -154,6 +157,16 @@ class Allocations(object):
         # maximum capacity
         cursor = self.db.query(
             "SELECT * from Rooms where Maxppl > Curppl and Room_type = '" + room_type + "'")
+        for row in cursor:
+            listrooms.append(row[1])  # populate list with room names(row[1]).
+        return listrooms
+
+    def getalloccupiedrooms(self):
+        listrooms = []  # initiate empty list
+        # query db to check if a room exists with less occupants than its
+        # maximum capacity
+        cursor = self.db.query(
+            "SELECT * from Rooms where Curppl > 0")
         for row in cursor:
             listrooms.append(row[1])  # populate list with room names(row[1]).
         return listrooms
@@ -198,7 +211,9 @@ class Allocations(object):
                 residing = 'N'
             qualifiedcandidates = self.runallocations(
                 personnel_name, personnel_type, residing)
-            print qualifiedcandidates
+
+            if len(qualifiedcandidates) > 0:
+                print qualifiedcandidates
 
         # allocations = {} #initiate allocations dict
         # i = 0

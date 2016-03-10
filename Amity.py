@@ -4,7 +4,7 @@
 This shows the usage and options that available for Amity room allocation app
 Usage:
     amity allocate  [(-p <file>)]
-    amity viewallocations  [(-r <nameofroom>) (-t <categoryofroom>)]
+    amity viewallocations  [(-r <nameofroom>)]
     amity viewunallocated  [(-r <nameofroom>) (-t <categoryofroom>)]
     amity (-s | --start)
     amity (-h | --help | --version)
@@ -27,6 +27,7 @@ from DatabaseManager import DatabaseManager
 import easygui
 from random import randint
 from Allocations import Allocations
+from Rooms import Rooms
 
 # compares the arguments to determine if all have been entered in correct
 # manner
@@ -70,7 +71,7 @@ class Amity (cmd.Cmd):
 
     @parser
     def do_allocaterooms(self, arg):
-        """Usage: allocate  [(-p <file>)]"""
+        """Usage: allocate """
 
         allocaterooms(arg)
 
@@ -79,7 +80,7 @@ class Amity (cmd.Cmd):
 
     @parser
     def do_viewallocations(self, arg):
-        """Usage: [(-r <nameofroom>) (-t <categoryofroom>)]"""
+        """Usage: viewallocations [(-r <nameofroom>)]"""
 
         viewallocations(arg)
 
@@ -96,15 +97,31 @@ opt = docopt(__doc__, sys.argv[1:])
 
 
 def viewallocations(docopt_args):
-    pass
-
-
-def allocate(**kwargs):
+    rooms = Rooms()
     db = DatabaseManager("Amity.sqlite")
-    allrooms = db.getrooms()
-    randomvalues = random.sample(range(1, len(allrooms)), len(allrooms) - 1)
-    for key, value in kwargs.iteritems():
-        pass
+    allocations = Allocations("")
+    if docopt_args["-r"]:
+        specific_room = docopt_args["<nameofroom>"]
+        print(specific_room + " (" + rooms.get_room_type(specific_room) + ")")
+        cursor = db.query(
+            "SELECT * from Allocations where Room_name = '" + specific_room + "'")
+        for row in cursor:
+            personnel_name = row[1]
+            personnel_type = row[4]
+            print personnel_name + ", ",
+        print "\n"
+    else:
+        list_rooms = allocations.getalloccupiedrooms()
+        for room in list_rooms:
+            print(room + " (" + rooms.get_room_type(room) + ")")
+            cursor = db.query(
+                "SELECT * from Allocations where Room_name = '" + room + "'")
+            for row in cursor:
+                personnel_name = row[1]
+                personnel_type = row[4]
+                print personnel_name + ", ",
+
+            print "\n"
 
 
 def allocaterooms(docopt_args):
