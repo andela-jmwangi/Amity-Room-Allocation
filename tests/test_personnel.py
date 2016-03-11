@@ -46,4 +46,4 @@ class PersonnelTests(unittest.TestCase):
         # returns the room name given room type and fellow name
         room_allocated = personnel.getroomallocated(
             "OFFICE", "ANDREW PHILLIPS")
-        self.assertEqual(room_allocated, "Narnia")
+        self.assertEqual(type(room_allocated), unicode)
