@@ -3,7 +3,9 @@ from DatabaseManager import DatabaseManager
 from Personnel import Personnel
 import random
 import ipdb
-
+import ast
+from Fileparser import Fileparser
+import os.path
 """This class handles all allocation tasks
 """
 
@@ -14,17 +16,14 @@ class Allocations(object):
         # rooms
         self.db = DatabaseManager("Amity.sqlite")
         self.importedallocations = importedallocations
-
+        self.qualifiedcandidates = []
+        self.personelallocation = Personnel()
     """determines if personnel has a room
     """
 
     def runallocations(self, personnel_name, personnel_type, residing):
         # ipdb.set_trace(context=1)
-
-        self.personelallocation = Personnel()
         allocations_list = []
-        qualifiedpersonsoffice = []
-        qualifiedpersonsliving = []
         if residing == "Y":
                 # allocate both office and living space
             if self.hasroom(personnel_name, "OFFICE"):
@@ -44,17 +43,19 @@ class Allocations(object):
                     if self.areroomavailable("OFFICE"):
                         # There is an living space available, proceed to
                         # add to list of qualifiedpersonsliving
-                        qualifiedpersonsliving.append(personnel_name)
+
                         room_name = self.getrandomroom("OFFICE")
-                        allocations_list.append(
-                            (room_name, personnel_name))
-                        self.saveallocation(
-                            personnel_name, room_name, "OFFICE", personnel_type)
+                        if len(room_name) > 0:
+                            allocations_list.append(
+                                (room_name, personnel_name))
+                            self.saveallocation(
+                                personnel_name, room_name, "OFFICE", personnel_type)
+
                     else:
                         # There is no living space available, thus inform
                         # user.
                         print (personnel_name +
-                            " => Sorry all living spaces have already been taken")
+                               "  =>  Sorry all living spaces have already been taken")
             else:
                 # allocate only office
                 if self.hasroom(personnel_name, "OFFICE"):
@@ -68,16 +69,16 @@ class Allocations(object):
                     if self.areroomavailable("OFFICE"):
                     # There is an office spot available, proceed to
                     # add to list of qualifiedpersonsoffice
-                        qualifiedpersonsoffice.append(personnel_name)
                         room_name = self.getrandomroom("OFFICE")
-                        allocations_list.append(
-                            (room_name, personnel_name))
-                        self.saveallocation(
-                            personnel_name, room_name, "OFFICE", personnel_type)
+                        if len(room_name) > 0:
+                            allocations_list.append(
+                                (room_name, personnel_name))
+                            self.saveallocation(
+                                personnel_name, room_name, "OFFICE", personnel_type)
                     else:
                         # There is no office spot available, thus inform user.
-                        print (
-                            "Sorry all office spots have already been taken")
+                        print (personnel_name +
+                               "Sorry all office spots have already been taken")
                 if self.hasroom(personnel_name, "LIVING"):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
@@ -89,17 +90,17 @@ class Allocations(object):
                     if self.areroomavailable("LIVING"):
                         # There is an living space available, proceed to
                         # add to list of qualifiedpersonsliving
-                        qualifiedpersonsliving.append(personnel_name)
                         room_name = self.getrandomroom("LIVING")
-                        allocations_list.append(
-                            (room_name, personnel_name))
-                        self.saveallocation(
-                            personnel_name, room_name, "LIVING", personnel_type)
+                        if len(room_name) > 0:
+                            allocations_list.append(
+                                (room_name, personnel_name))
+                            self.saveallocation(
+                                personnel_name, room_name, "LIVING", personnel_type)
                     else:
                         # There is no living space available, thus inform
                         # user.
-                        print (
-                            "Sorry all living spaces have already been taken")
+                        print (personnel_name +
+                               "Sorry all living spaces have already been taken")
         else:
             # allocate only office
             if self.hasroom(personnel_name, "OFFICE"):
@@ -113,19 +114,17 @@ class Allocations(object):
                 if self.areroomavailable("OFFICE"):
                 # There is an office spot available, proceed to
                 # add to list of qualifiedpersonsoffice
-                    qualifiedpersonsoffice.append(personnel_name)
                     room_name = self.getrandomroom("OFFICE")
-                    allocations_list.append(
-                        (room_name, personnel_name))
-                    self.saveallocation(
-                        personnel_name, room_name, "OFFICE", personnel_type)
+                    if len(room_name) > 0:
+                        allocations_list.append(
+                            (room_name, personnel_name))
+                        self.saveallocation(
+                            personnel_name, room_name, "OFFICE", personnel_type)
                 else:
                     # There is no office spot available, thus inform user.
-                    print (
-                        "Sorry all office spots have already been taken")
+                    print (personnel_name +
+                           "Sorry all office spots have already been taken")
 
-        # return {"living": qualifiedpersonsliving, "office":
-        # qualifiedpersonsoffice}
         return allocations_list
 
     def hasroom(self, personnel_name, room_type):
@@ -209,15 +208,40 @@ class Allocations(object):
                 residing = element[2]
             else:
                 residing = 'N'
-            qualifiedcandidates = self.runallocations(
-                personnel_name, personnel_type, residing)
+            self.qualifiedcandidates.append(self.runallocations(
+                personnel_name, personnel_type, residing))
 
-            if len(qualifiedcandidates) > 0:
-                print qualifiedcandidates
+        list2 = [x for x in self.qualifiedcandidates if x != []]
+        if list2:
+            with open("cache", "w") as text_file:
+                text_file.write(str(list2))
+            print list2
 
-        # allocations = {} #initiate allocations dict
-        # i = 0
-        # for person in listpersonnel:
-        # allocations[person] = listrooms[i] # create dict with person and room allocated to.
-        #     i += 1
-        # return allocations
+    def unallocated(self):
+        original_list_names = []
+        allocated_list_names = []
+        for item in self.get_list_imported_names():
+            original_list_names.append(item[0])
+
+        for item in self.readcache():
+            for itemtuple in item:
+                allocated_list_names.append(itemtuple[1])
+
+        list_unallocated = self.personelallocation.getunallocated(
+            allocated_list_names, original_list_names)
+        return list_unallocated
+
+    def get_list_imported_names(self):
+        if os.path.exists('filepath'):
+            with open('filepath') as f:
+                contents = f.read()
+                parser = Fileparser(contents)
+                inputlist = parser.getlinecontents()
+                return inputlist
+        else:
+            print "The file does not exist"
+
+    def readcache(self):
+        with open('cache') as f:
+            contents = f.read()
+            return ast.literal_eval(contents)

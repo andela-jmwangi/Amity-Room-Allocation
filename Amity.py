@@ -5,7 +5,7 @@ This shows the usage and options that available for Amity room allocation app
 Usage:
     amity allocate  [(-p <file>)]
     amity viewallocations  [(-r <nameofroom>)]
-    amity viewunallocated  [(-r <nameofroom>) (-t <categoryofroom>)]
+    amity viewunallocated
     amity (-s | --start)
     amity (-h | --help | --version)
 Options:
@@ -28,6 +28,12 @@ import easygui
 from random import randint
 from Allocations import Allocations
 from Rooms import Rooms
+from clint.textui import colored, puts, indent
+from colorama import init
+from termcolor import cprint
+from pyfiglet import figlet_format
+from colorama import init, Fore, Back, Style
+
 
 # compares the arguments to determine if all have been entered in correct
 # manner
@@ -84,6 +90,12 @@ class Amity (cmd.Cmd):
 
         viewallocations(arg)
 
+    @parser
+    def do_viewunallocated(self, arg):
+        """Usage: viewunallocated """
+
+        viewunallocated(arg)
+
     def do_quit(self, arg):
         """Exit application."""
 
@@ -102,14 +114,14 @@ def viewallocations(docopt_args):
     allocations = Allocations("")
     if docopt_args["-r"]:
         specific_room = docopt_args["<nameofroom>"]
-        print(specific_room + " (" + rooms.get_room_type(specific_room) + ")")
+        print("\n"+Back.GREEN + specific_room + " (" + rooms.get_room_type(specific_room) + Back.RESET")")
         cursor = db.query(
             "SELECT * from Allocations where Room_name = '" + specific_room + "'")
         for row in cursor:
             personnel_name = row[1]
             personnel_type = row[4]
-            print personnel_name + ", ",
-        print "\n"
+            print Fore.YELLOW + personnel_name + ", ",
+        print "\n" + Fore.RESET
     else:
         list_rooms = allocations.getalloccupiedrooms()
         for room in list_rooms:
@@ -124,6 +136,18 @@ def viewallocations(docopt_args):
             print "\n"
 
 
+def viewunallocated(docopt_args):
+    allocations = Allocations("")
+    unallocated = allocations.unallocated()
+    if len(unallocated) > 0:
+        print "Unallocated persons: "
+        for name in unallocated:
+            print name + " ,",
+        print "\n"
+    else:
+        print "No unallocated people found."
+
+
 def allocaterooms(docopt_args):
     root = Tk()
     root.withdraw()
@@ -131,9 +155,11 @@ def allocaterooms(docopt_args):
     file = tkFileDialog.askopenfile(
         parent=root, mode='rb', title='Choose a file')
     if file:
+        #savefile path for future use
+        savefilepath(file.name)
         # read file to get list
         parser = Fileparser(file.name)
-        inputlist = parser.getlinecontents()
+        inputlist = parser.readfile()
         allocation = Allocations(inputlist)
         allocation.allocate()
         # for element in inputlist:
@@ -144,6 +170,9 @@ def allocaterooms(docopt_args):
         print("You did not select a file")
     root.destroy()
 
+def savefilepath(path):
+    with open("filepath", "w") as text_file:
+                text_file.write(path)
 
 def showwelcomemsg():
     init(strip=not sys.stdout.isatty())  # strip colors if stdout is redirected

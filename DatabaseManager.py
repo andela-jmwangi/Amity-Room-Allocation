@@ -11,11 +11,12 @@ class DatabaseManager(object):
     """
 
     def __init__(self, db):
-        self.conn = sqlite3.connect(db)
+        self.conn = sqlite3.connect(db)  # connects to Amity.sqlite database
         self.conn.commit()
         self.cur = self.conn.cursor()
+        # checks if atleast 1 table exists (sqlite_sequence)
         if self.gettablecount() < 2:
-            self.createtables()
+            self.createtables()  # if so, create the remaining 3
 
     """Performs a query to the database based on the supplied
     query string.This method then returns the cursor object to the
@@ -38,32 +39,32 @@ class DatabaseManager(object):
     """
 
     def getrooms(self):
-        listoffices = [['Valhalla', 6, 'OFFICE'],
-                       ['Turqois', 4, 'OFFICE'],
-                       ['Oculus', 5, 'OFFICE'],
-                       ['Hogwarts', 6, 'OFFICE'],
-                       ['Camelot', 4, 'OFFICE'],
-                       ['Midgar', 2, 'OFFICE'],
-                       ['Mordor', 3, 'OFFICE'],
-                       ['Narnia', 5, 'OFFICE'],
-                       ['Shire', 3, 'OFFICE'],
-                       ['Quiet-Room', 4, 'OFFICE']]
+        list_offices = [['Valhalla', 6, 'OFFICE'],
+                        ['Turqois', 4, 'OFFICE'],
+                        ['Oculus', 5, 'OFFICE'],
+                        ['Hogwarts', 6, 'OFFICE'],
+                        ['Camelot', 4, 'OFFICE'],
+                        ['Midgar', 2, 'OFFICE'],
+                        ['Mordor', 3, 'OFFICE'],
+                        ['Narnia', 5, 'OFFICE'],
+                        ['Shire', 3, 'OFFICE'],
+                        ['Quiet-Room', 4, 'OFFICE']]
 
-        listlivingspaces = [['Blue', 4, 'LIVING'],
-                            ['Red', 3, 'LIVING'],
-                            ['Amber', 2, 'LIVING'],
-                            ['Yellow', 4, 'LIVING'],
-                            ['Brown', 3, 'LIVING'],
-                            ['Green', 4, 'LIVING'],
-                            ['Pink', 4, 'LIVING'],
-                            ['Purple', 3, 'LIVING'],
-                            ['Violet', 2, 'LIVING'],
-                            ['White', 4, 'LIVING']]
+        list_livingspaces = [['Blue', 4, 'LIVING'],
+                             ['Red', 3, 'LIVING'],
+                             ['Amber', 2, 'LIVING'],
+                             ['Yellow', 4, 'LIVING'],
+                             ['Brown', 3, 'LIVING'],
+                             ['Green', 4, 'LIVING'],
+                             ['Pink', 4, 'LIVING'],
+                             ['Purple', 3, 'LIVING'],
+                             ['Violet', 2, 'LIVING'],
+                             ['White', 4, 'LIVING']]
 
-        rooms = listoffices + listlivingspaces
-        return rooms
+        all_rooms = list_offices + list_livingspaces
+        return all_rooms
 
-    """Creates database tables if they does not exist
+    """Gets a the number of tables present in the database
     """
 
     def gettablecount(self):
@@ -73,6 +74,9 @@ class DatabaseManager(object):
         tables = map(lambda t: t[0], cursor.fetchall())
         return len(tables)
 
+    """Creates database tables if they does not exist and populates Rooms table
+    """
+
     def createtables(self):
         self.query(
             "CREATE Table if not exists Allocations (_id INTEGER PRIMARY KEY AUTOINCREMENT, Personnel_Name TEXT NOT NULL, Room_type TEXT NOT NULL, Room_name TEXT NOT NULL,Personnel_type TEXT NOT NULL)")
@@ -80,7 +84,7 @@ class DatabaseManager(object):
             "CREATE Table if not exists Staff (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL)")
         self.query(
             "CREATE Table if not exists Rooms (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Maxppl INT NOT NULL,Curppl INT NOT NULL, Room_type TEXT NOT NULL)")
-        roomslist = self.getrooms()
+        roomslist = self.getrooms()  # get list of rooms
         for entry in roomslist:
             self.query("INSERT INTO Rooms (Name, Maxppl, Curppl, Room_type)VALUES ('" +
                        entry[0] + "', '" + str(entry[1]) + "','0','" + entry[2] + "')")
