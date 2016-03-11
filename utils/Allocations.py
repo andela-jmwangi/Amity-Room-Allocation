@@ -236,7 +236,7 @@ class Allocations(object):
             with open('filepath') as f:
                 contents = f.read()
                 parser = Fileparser(contents)
-                inputlist = parser.getlinecontents()
+                inputlist = parser.readfile()
                 return inputlist
         else:
             print "The file does not exist"

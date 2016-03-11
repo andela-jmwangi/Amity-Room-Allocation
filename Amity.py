@@ -22,11 +22,11 @@ from docopt import docopt, DocoptExit
 from colorama import init, Fore, Back, Style
 from termcolor import cprint
 from pyfiglet import figlet_format
-from Fileparser import Fileparser
-from DatabaseManager import DatabaseManager
+from utils.Fileparser import Fileparser
+from db.DatabaseManager import DatabaseManager
 from random import randint
-from Allocations import Allocations
-from Rooms import Rooms
+from utils.Allocations import Allocations
+from models.Rooms import Rooms
 from clint.textui import colored, puts, indent
 from colorama import init
 from termcolor import cprint
@@ -113,7 +113,7 @@ def viewallocations(docopt_args):
     allocations = Allocations("")
     if docopt_args["-r"]:
         specific_room = docopt_args["<nameofroom>"]
-        print("\n"+Back.GREEN + specific_room + " (" + rooms.get_room_type(specific_room) + Back.RESET + ")")
+        print("\n"+Back.GREEN + specific_room + " (" + rooms.get_room_type(specific_room) + ")" + Back.RESET)
         cursor = db.query(
             "SELECT * from Allocations where Room_name = '" + specific_room + "'")
         for row in cursor:
@@ -124,15 +124,15 @@ def viewallocations(docopt_args):
     else:
         list_rooms = allocations.getalloccupiedrooms()
         for room in list_rooms:
-            print(room + " (" + rooms.get_room_type(room) + ")")
+            print("\n"+Back.GREEN + room + " (" + rooms.get_room_type(room) + ")" + Back.RESET)
             cursor = db.query(
                 "SELECT * from Allocations where Room_name = '" + room + "'")
             for row in cursor:
                 personnel_name = row[1]
                 personnel_type = row[4]
-                print personnel_name + ", ",
+                print Fore.YELLOW + personnel_name + ", ",
 
-            print "\n"
+            print "\n" + Fore.RESET
 
 
 def viewunallocated(docopt_args):
