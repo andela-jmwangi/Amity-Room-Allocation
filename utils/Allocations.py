@@ -6,6 +6,7 @@ import ipdb
 import ast
 from Fileparser import Fileparser
 import os.path
+from colorama import init, Fore, Back, Style
 """This class handles all allocation tasks
 """
 
@@ -30,14 +31,14 @@ class Allocations(object):
                 # no need to allocate office, try allocate living space
                 allocatedroom = self.personelallocation.getroomallocated(
                     "OFFICE", personnel_name)
-                print (
-                    personnel_name + " has already been allocated " + allocatedroom)
+                print ( "==> "+ Fore.YELLOW +
+                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom+ Fore.RESET)
                 if self.hasroom(personnel_name, "LIVING"):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
                         "LIVING", personnel_name)
-                    print (
-                        personnel_name + " has already been allocated " + allocatedroom)
+                    print ( "==> "+ Fore.YELLOW +
+                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom+ Fore.RESET)
                 else:
                     # doesn't have living space thus add to allocate
                     if self.areroomavailable("OFFICE"):
@@ -63,7 +64,7 @@ class Allocations(object):
                     allocatedroom = self.personelallocation.getroomallocated(
                         "OFFICE", personnel_name)
                     print (
-                        personnel_name + " has already been allocated " + allocatedroom)
+                        personnel_name + " has already been allocated " + allocatedroom+ Fore.RESET)
                 else:
                     # person doesn't have a room thus proceed to allocate
                     if self.areroomavailable("OFFICE"):
@@ -83,8 +84,8 @@ class Allocations(object):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
                         "LIVING", personnel_name)
-                    print (
-                        personnel_name + " has already been allocated " + allocatedroom)
+                    print ( "==> "+ Fore.YELLOW +
+                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom+ Fore.RESET)
                 else:
                     # doesn't have living space thus add to allocate
                     if self.areroomavailable("LIVING"):
@@ -107,8 +108,8 @@ class Allocations(object):
                 # person already has a room so no need to allocate
                 allocatedroom = self.personelallocation.getroomallocated(
                     "OFFICE", personnel_name)
-                print (
-                    personnel_name + " has already been allocated " + allocatedroom)
+                print ( "==> "+ Fore.YELLOW +
+                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
             else:
                 # person doesn't have a room thus proceed to allocate
                 if self.areroomavailable("OFFICE"):
@@ -221,10 +222,9 @@ class Allocations(object):
                 personnel_name, personnel_type, residing))
 
         list2 = [x for x in self.qualifiedcandidates if x != []]
-        if list2:
-            with open("cache", "w") as text_file:
-                text_file.write(str(list2))
-            return list2
+        with open("cache", "w") as text_file:
+            text_file.write(str(list2))
+        return list2
 
     """Retrieves a list of unallocated personnel
     """

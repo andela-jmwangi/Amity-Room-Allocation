@@ -3,7 +3,7 @@
 """
 This shows the usage and options that available for Amity room allocation app
 Usage:
-    amity allocate  [(-p <file>)]
+    amity allocaterooms
     amity viewallocations  [(-r <nameofroom>)]
     amity viewunallocated
     amity (-s | --start)
@@ -113,7 +113,8 @@ def viewallocations(docopt_args):
     allocations = Allocations("")
     if docopt_args["-r"]:
         specific_room = docopt_args["<nameofroom>"]
-        print("\n"+Back.GREEN + specific_room + " (" + rooms.get_room_type(specific_room) + ")" + Back.RESET)
+        print("\n" + Back.GREEN + specific_room +
+              " (" + rooms.get_room_type(specific_room) + ")" + Back.RESET)
         cursor = db.query(
             "SELECT * from Allocations where Room_name = '" + specific_room + "'")
         for row in cursor:
@@ -124,7 +125,8 @@ def viewallocations(docopt_args):
     else:
         list_rooms = allocations.getalloccupiedrooms()
         for room in list_rooms:
-            print("\n"+Back.GREEN + room + " (" + rooms.get_room_type(room) + ")" + Back.RESET)
+            print("\n" + Back.GREEN + room +
+                  " (" + rooms.get_room_type(room) + ")" + Back.RESET)
             cursor = db.query(
                 "SELECT * from Allocations where Room_name = '" + room + "'")
             for row in cursor:
@@ -154,24 +156,43 @@ def allocaterooms(docopt_args):
     file = tkFileDialog.askopenfile(
         parent=root, mode='rb', title='Choose a file')
     if file:
-        #savefile path for future use
+        # savefile path for future use
         savefilepath(file.name)
         # read file to get list
         parser = Fileparser(file.name)
         inputlist = parser.readfile()
         allocation = Allocations(inputlist)
-        allocation.allocate()
-        # for element in inputlist:
-        #     for part in element:
-        #         print part
+        allocations_list = allocation.allocate()
+        if len(allocations_list) > 0:
+            puts(colored.green(str(len(allocations_list)) +
+                             " people allocated successfully. Do you wish to view them? (y)(n)"))
+            answer = raw_input(">")
+            if answer == "y":
+                dict = {}
+                for item in allocations_list:
+                    for item2 in item:
+                        if item2[0] in dict:
+                            dict[item2[0]].append(item2[1])
+                        else:
+                            dict[item2[0]] = []
+                            dict[item2[0]].append(item2[1])
+
+                for room_name,occupants in dict.iteritems():
+                    puts(colored.green(room_name))
+                    print ",".join(occupants)
+                    print "\n"
+            else:
+                return
 
     else:
         print("You did not select a file")
     root.destroy()
 
+
 def savefilepath(path):
     with open("filepath", "w") as text_file:
-                text_file.write(path)
+        text_file.write(path)
+
 
 def showwelcomemsg():
     init(strip=not sys.stdout.isatty())  # strip colors if stdout is redirected
