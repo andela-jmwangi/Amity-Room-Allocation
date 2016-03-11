@@ -1,6 +1,6 @@
 import unittest
-from .. import DatabaseManager
-from .. import Rooms
+from db.DatabaseManager import DatabaseManager
+from models import Rooms
 
 """Unit tests for testing various functions in Rooms class
 """
@@ -16,7 +16,7 @@ class RoomsTests(unittest.TestCase):
         rooms = Rooms.Rooms()
         # get number of rooms before insert
         num_before_insert = rooms.get_rooms_with_occupants()
-        self.db = DatabaseManager.DatabaseManager("Amity.sqlite")
+        self.db = DatabaseManager("Amity.sqlite")
         # insert record to increase number of available rooms
         self.db.query(
             "INSERT into Rooms (Name, Maxppl, Curppl, Room_type) VALUES('TestRoom','4','2','OFFICE')")

@@ -1,6 +1,6 @@
 import unittest
 import sqlite3
-from .. import DatabaseManager
+from db import DatabaseManager
 
 """Unit tests for testing various functions in DatabaseManager class
 """

@@ -1,5 +1,5 @@
 import unittest
-from .. import Fileparser
+from utils import Fileparser
 
 """Unit tests for testing various functions in File Parser class
 """

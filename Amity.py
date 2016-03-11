@@ -113,7 +113,7 @@ def viewallocations(docopt_args):
     allocations = Allocations("")
     if docopt_args["-r"]:
         specific_room = docopt_args["<nameofroom>"]
-        print("\n"+Back.GREEN + specific_room + " (" + rooms.get_room_type(specific_room) + Back.RESET")")
+        print("\n"+Back.GREEN + specific_room + " (" + rooms.get_room_type(specific_room) + Back.RESET + ")")
         cursor = db.query(
             "SELECT * from Allocations where Room_name = '" + specific_room + "'")
         for row in cursor:

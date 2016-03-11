@@ -1,6 +1,6 @@
 import unittest
-from .. import Personnel
-from .. import DatabaseManager
+from models import Personnel
+from db  import DatabaseManager
 
 """Unit tests for testing various functions in Personnel class
 """
