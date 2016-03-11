@@ -141,7 +141,7 @@ def viewunallocated(docopt_args):
     allocations = Allocations("")
     unallocated = allocations.unallocated()
     if len(unallocated) > 0:
-        print "Unallocated persons: "
+        puts(colored.green("Unallocated persons: "))
         for name in unallocated:
             print name + " ,",
         print "\n"
