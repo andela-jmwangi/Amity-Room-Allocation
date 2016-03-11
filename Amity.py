@@ -175,8 +175,8 @@ def savefilepath(path):
 
 def showwelcomemsg():
     init(strip=not sys.stdout.isatty())  # strip colors if stdout is redirected
-    # cprint(figlet_format('Amity', font='starwars'),
-    #        'green', attrs=['blink'])
+    cprint(figlet_format('Amity', font='starwars'),
+           'green', attrs=['bold'])
     print(Back.RED + 'Welcome to Amity Room Allocation!' + Back.RESET +
           Style.DIM + '\n(type help for a list of commands.)' + Style.NORMAL)
 

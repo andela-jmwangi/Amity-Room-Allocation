@@ -147,7 +147,7 @@ class Allocations(object):
             return True  # return true if one or more records have been found
         return False  # return false if no record found
 
-    """checks for available rooms (rooms with available slots) and returns them
+    """checks for available rooms per type (rooms with available slots) and returns them
     """
 
     def getavailablerooms(self, room_type):
@@ -160,6 +160,8 @@ class Allocations(object):
             listrooms.append(row[1])  # populate list with room names(row[1]).
         return listrooms
 
+    """returns rooms that have atleast 1 occupant
+    """
     def getalloccupiedrooms(self):
         listrooms = []  # initiate empty list
         # query db to check if a room exists with less occupants than its
@@ -215,7 +217,7 @@ class Allocations(object):
         if list2:
             with open("cache", "w") as text_file:
                 text_file.write(str(list2))
-            print list2
+            return list2
 
     def unallocated(self):
         original_list_names = []
