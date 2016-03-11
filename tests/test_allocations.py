@@ -88,11 +88,11 @@ class AllocationTests(unittest.TestCase):
         list_allocated = allocations.allocate() 
         self.assertEqual(len(list_allocated),1)
 
-    """Tests function to determine if it returns rooms that have been unallocated
-    """
-    def test_unallocated(self):
-        allocations = Allocations(
-            [["DummyName", "DummyPersonType", "Dummyzz"]])
-        allocations.allocate()
-        list_unallocated = allocations.unallocated()
-        self.assertEquals(type(list_unallocated),set) 
+    # """Tests function to determine if it returns rooms that have been unallocated
+    # """
+    # def test_unallocated(self):
+    #     allocations = Allocations(
+    #         [["DummyName", "DummyPersonType", "Dummyzz"]])
+    #     allocations.allocate()
+    #     list_unallocated = allocations.unallocated()
+    #     self.assertEquals(type(list_unallocated),set) 
