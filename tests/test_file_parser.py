@@ -1,5 +1,6 @@
 import unittest
 from utils import Fileparser
+import os
 
 """Unit tests for testing various functions in File Parser class
 """
@@ -12,6 +13,6 @@ class File_Parsing_Tests(unittest.TestCase):
 
     def test_get_line_contents(self):
         parser = Fileparser.Fileparser(
-            "/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/testinput.txt")
+            os.path.dirname(os.path.realpath("testinput.txt")))
         list_allocations = parser.readfile()
         self.assertEqual(len(list_allocations), 3)
