@@ -13,6 +13,6 @@ class File_Parsing_Tests(unittest.TestCase):
 
     def test_get_line_contents(self):
         parser = Fileparser.Fileparser(
-            os.path.dirname(os.path.realpath("testinput.txt")))
+            os.path.dirname(os.path.realpath("testinput.txt")) + "/tests/testinput.txt")
         list_allocations = parser.readfile()
         self.assertEqual(len(list_allocations), 3)
