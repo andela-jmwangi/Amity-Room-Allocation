@@ -24,7 +24,6 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 from Fileparser import Fileparser
 from DatabaseManager import DatabaseManager
-import easygui
 from random import randint
 from Allocations import Allocations
 from Rooms import Rooms
