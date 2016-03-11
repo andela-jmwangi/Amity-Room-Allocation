@@ -31,13 +31,9 @@ class DatabaseManagerTests(unittest.TestCase):
     def test_createtables(self):
         db = DatabaseManager.DatabaseManager("Amity.sqlite")
         num_tables = db.gettablecount()  # retrieve count of tables
-        # if tables are less than 4 create tables and check if now 4 in number
-        if num_tables < 4:
-            db.createtables()
-            self.assertEqual(db.gettablecount(), 4)
-        else:
-            # tables should be 4 in number
-            self.assertEqual(db.gettablecount(), 4)
+        db.createtables()
+        # tables should be 4 in number
+        self.assertEqual(db.gettablecount(), 4)
 
     """Tests whether function returns type cursor for the query
     """
