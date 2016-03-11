@@ -162,6 +162,7 @@ class Allocations(object):
 
     """returns rooms that have atleast 1 occupant
     """
+
     def getalloccupiedrooms(self):
         listrooms = []  # initiate empty list
         # query db to check if a room exists with less occupants than its
@@ -195,11 +196,17 @@ class Allocations(object):
         # ipdb.set_trace(context=1)
         return str(availablerooms[0])
 
+    """saves allocations to the db
+    """
+
     def saveallocation(self, personnel_name, room_name, room_type, personnel_type):
         self.db.query("INSERT INTO Allocations (Personnel_Name, Room_name, Personnel_type, Room_type)VALUES ('" +
                       personnel_name + "', '" + room_name + "','" + personnel_type + "','" + room_type + "')")
         self.db.query(
             "UPDATE Rooms set Curppl = Curppl + 1 where Name = '" + room_name + "'")
+
+    """ run allocations for the input lines
+    """
 
     def allocate(self):
         randomizedallocations = self.randomizelist(self.importedallocations)
@@ -219,6 +226,9 @@ class Allocations(object):
                 text_file.write(str(list2))
             return list2
 
+    """Retrieves a list of unallocated personnel
+    """
+
     def unallocated(self):
         original_list_names = []
         allocated_list_names = []
@@ -232,6 +242,9 @@ class Allocations(object):
         list_unallocated = self.personelallocation.getunallocated(
             allocated_list_names, original_list_names)
         return list_unallocated
+
+    """Retrieves a list of imported names from a file
+    """
 
     def get_list_imported_names(self):
         if os.path.exists('filepath'):
