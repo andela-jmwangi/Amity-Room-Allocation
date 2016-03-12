@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/andela-jmwangi/Amity-Room-Allocation.svg?branch=feature-review)](https://travis-ci.org/andela-jmwangi/Amity-Room-Allocation)
 [![Coverage Status](https://coveralls.io/repos/github/andela-jmwangi/Amity-Room-Allocation/badge.svg?branch=feature-review)](https://coveralls.io/github/andela-jmwangi/Amity-Room-Allocation?branch=feature-review)
 
+![alt tag](https://github.com/andela-jmwangi/Amity-Room-Allocation/feature-review/screen_shot.png)
+
 ## Installation
 Clone the repo 
 ```
@@ -26,6 +28,10 @@ Run ``` python Amity.py allocaterooms ``` Allocates various rooms to fellows and
 Run ``` python Amity.py viewallocations [(-r <nameofroom>)] ``` To get a list of room allocations
 
 Run ``` python Amity.py viewunallocated``` to view people who were not allocated
+
+Run ``` python Amity.py unallocate (-p <fname> <lname> -r <name_of_room>)``` to unallocate people assigned rooms
+
+Run ``` python Amity.py reset ``` to delete all Allocations
 
 Run ``` python Amity.py --help ``` to get help on usage
 
@@ -61,5 +67,3 @@ Copyright (c) 2016 Jack Wachira <jack.wachira@andela.com>
 > LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 > THE SOFTWARE.
-
-
