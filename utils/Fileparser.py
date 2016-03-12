@@ -11,7 +11,7 @@ class Fileparser(object):
         self.pathtofile = pathtofile
 
     """Read file contents and return a list
-    """
+    """ 
     def readfile(self):
         #ipdb.set_trace(context=1)
         list_allocations = []
