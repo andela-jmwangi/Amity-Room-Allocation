@@ -88,4 +88,3 @@ class DatabaseManager(object):
         for entry in roomslist:
             self.query("INSERT INTO Rooms (Name, Maxppl, Curppl, Room_type)VALUES ('" +
                        entry[0] + "', '" + str(entry[1]) + "','0','" + entry[2] + "')")
-            

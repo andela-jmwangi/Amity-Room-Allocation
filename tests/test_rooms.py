@@ -33,4 +33,3 @@ class RoomsTests(unittest.TestCase):
         # check which room type Valhalla is
         room_type = rooms.get_room_type("Valhalla")
         self.assertEqual(room_type, "OFFICE")
-        

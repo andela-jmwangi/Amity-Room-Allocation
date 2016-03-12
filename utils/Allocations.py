@@ -255,4 +255,3 @@ class Allocations(object):
         with open('cache') as f:
             contents = f.read()
             return ast.literal_eval(contents)
-            

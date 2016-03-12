@@ -134,4 +134,3 @@ class AllocationTests(unittest.TestCase):
         db.query("UPDATE Rooms set Curppl = '0'")
         list_rooms = allocations.getalloccupiedrooms()
         self.assertEquals(len(list_rooms), 0)
-        

@@ -44,4 +44,3 @@ class DatabaseManagerTests(unittest.TestCase):
         cur = db.query("SELECT * from Allocations")
         # check if type is sqlite2 cursor object
         self.assertEqual(type(cur), sqlite3.Cursor)
-        
