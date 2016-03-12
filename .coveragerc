@@ -10,3 +10,8 @@ omit=
 
 [html]
 directory = coverage_html
+
+coverage:
+    file: '.coverage'
+    config: '.coveragerc'
+    format: 'py-cc'
