@@ -3,7 +3,7 @@
 
 ![Screen shot](https://github.com/andela-jmwangi/Amity-Room-Allocation/blob/feature-review/screen_shot.png)
 
-# ${1:Amity Room Allocation}
+# Amity Room Allocation
 Python Console Application for allocation rooms in Amity.
 
 ## Installation
