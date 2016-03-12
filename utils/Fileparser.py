@@ -25,3 +25,4 @@ class Fileparser(object):
                 residing = "Y"
             list_allocations.append([person_name, person_type, residing])
         return list_allocations
+        

@@ -32,3 +32,4 @@ class Rooms(object):
         for row in cursor:
             room_type = row[0]  # get room type to be returned
         return room_type
+        

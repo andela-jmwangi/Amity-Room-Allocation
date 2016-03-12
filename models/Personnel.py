@@ -62,3 +62,4 @@ class Personnel(object):
         for row in cursor:
             allocatedroom = row[0]  # get room name
         return allocatedroom
+        

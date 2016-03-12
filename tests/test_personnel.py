@@ -47,3 +47,4 @@ class PersonnelTests(unittest.TestCase):
         room_allocated = personnel.getroomallocated(
             "OFFICE", "ANDREW PHILLIPS")
         self.assertEqual(type(room_allocated), unicode)
+        

@@ -16,3 +16,4 @@ class File_Parsing_Tests(unittest.TestCase):
             os.path.dirname(os.path.realpath("testinput.txt")) + "/tests/testinput.txt")
         list_allocations = parser.readfile()
         self.assertEqual(len(list_allocations), 3)
+        
