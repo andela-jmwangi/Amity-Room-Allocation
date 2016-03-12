@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/andela-jmwangi/Amity-Room-Allocation.svg?branch=feature-review)](https://travis-ci.org/andela-jmwangi/Amity-Room-Allocation)
 [![Coverage Status](https://coveralls.io/repos/github/andela-jmwangi/Amity-Room-Allocation/badge.svg?branch=feature-review)](https://coveralls.io/github/andela-jmwangi/Amity-Room-Allocation?branch=feature-review)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/andela-jmwangi/Amity-Room-Allocation/badges/quality-score.png?b=feature-review)](https://scrutinizer-ci.com/g/andela-jmwangi/Amity-Room-Allocation/?branch=feature-review)
 
 # Amity Room Allocation
 Python Console Application for allocation rooms in Amity.
