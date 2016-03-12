@@ -122,7 +122,6 @@ opt = docopt(__doc__, sys.argv[1:])
 """Resets all allocations
 """
 
-
 def reset(docopt_args):
     puts(colored.green("Are you sure you want to reset allocations? (y)(n)"))
     answer = raw_input(">")
