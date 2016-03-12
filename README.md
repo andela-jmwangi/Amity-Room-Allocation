@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/andela-jmwangi/Amity-Room-Allocation.svg?branch=feature-review)](https://travis-ci.org/andela-jmwangi/Amity-Room-Allocation)
 [![Coverage Status](https://coveralls.io/repos/github/andela-jmwangi/Amity-Room-Allocation/badge.svg?branch=feature-review)](https://coveralls.io/github/andela-jmwangi/Amity-Room-Allocation?branch=feature-review)
 
-![alt tag](https://github.com/andela-jmwangi/Amity-Room-Allocation/feature-review/screen_shot.png)
+![alt tag](https://github.com/andela-jmwangi/Amity-Room-Allocation/tree/feature-review/screen_shot.png)
 
 ## Installation
 Clone the repo 
