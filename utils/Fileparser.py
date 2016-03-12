@@ -18,11 +18,10 @@ class Fileparser(object):
         contents = [line.rstrip('\n') for line in open(self.pathtofile, 'r')]
         for line in contents:
             words = line.split(" ")
-            person_name = words[0] + " " + words[1]
+            person_name = words[0].replace("'", "") + " " + words[1].replace("'", "")
             person_type = words[2]
             residing = "N"
             if len(words) == 4:
                 residing = "Y"
             list_allocations.append([person_name, person_type, residing])
-        return list_allocations
-        
+        return list_allocations 

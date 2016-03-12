@@ -119,7 +119,7 @@ class AllocationTests(unittest.TestCase):
         db = DatabaseManager("Amity.sqlite")
         db.query(
             "DELETE FROM Allocations where Personnel_Name = 'DummyName'")
-      self.assertEquals(type(list_unallocated), list)
+        self.assertEquals(type(list_unallocated), list)
 
     """Tests whether function returns an rooms that have atleast
         one occupant

@@ -47,4 +47,11 @@ class PersonnelTests(unittest.TestCase):
         room_allocated = personnel.getroomallocated(
             "OFFICE", "ANDREW PHILLIPS")
         self.assertEqual(type(room_allocated), unicode)
-        
+
+    """Tests whether function returns correct residing state
+    """
+
+    def test_residing(self):
+        personnel = Personnel.Personnel()
+        state = personnel.isresiding("IYANU ALIMI")
+        self.assertEquals(state, "Y")
