@@ -7,6 +7,7 @@ Usage:
     amity viewallocations  [(-r <name_of_room>)]
     amity viewunallocated
     amity unallocate (-p <fname> <lname> -r <name_of_room>)
+    amity reset
     amity (-s | --start)
     amity (-h | --help | --version)
 Options:
@@ -103,6 +104,12 @@ class Amity (cmd.Cmd):
 
         viewunallocated(arg)
 
+    @parser
+    def do_reset(self, arg):
+        """Usage: reset """
+
+        reset(arg)
+
     def do_quit(self, arg):
         """Exit application."""
 
@@ -110,6 +117,22 @@ class Amity (cmd.Cmd):
         exit()
 
 opt = docopt(__doc__, sys.argv[1:])
+
+
+"""Resets all allocations
+"""
+
+
+def reset(docopt_args):
+    puts(colored.green("Are you sure you want to reset allocations? (y)(n)"))
+    answer = raw_input(">")
+    if answer == "y" or answer == "Y":
+        db = DatabaseManager("Amity.sqlite")
+        db.query("DROP TABLE Allocations")
+        db.query("DROP TABLE Rooms")
+        db.query("DROP TABLE Staff")
+        puts(colored.green("Allocations reset successfully!"))
+
 
 """Unallocates a staff his/her given room
 """

@@ -248,7 +248,6 @@ class Allocations(object):
 
     def get_list_imported_names(self):
         parser = Fileparser(os.path.dirname(os.path.realpath("filepath")) + "/input.txt")
-        print os.path.dirname(os.path.realpath("filepath")) + "/input.txt"
         inputlist = parser.readfile()
         return inputlist
 
