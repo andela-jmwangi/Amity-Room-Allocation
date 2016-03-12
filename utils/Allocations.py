@@ -3,7 +3,7 @@ from models.Personnel import Personnel
 import random
 import ipdb
 import ast
-from Fileparser import Fileparser
+from utils.Fileparser import Fileparser
 import os.path
 from colorama import init, Fore, Back, Style
 """This class handles all allocation tasks
@@ -30,14 +30,14 @@ class Allocations(object):
                 # no need to allocate office, try allocate living space
                 allocatedroom = self.personelallocation.getroomallocated(
                     "OFFICE", personnel_name)
-                print ( "==> "+ Fore.YELLOW +
-                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom+ Fore.RESET)
+                print ("==> " + Fore.YELLOW +
+                       personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
                 if self.hasroom(personnel_name, "LIVING"):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
                         "LIVING", personnel_name)
-                    print ( "==> "+ Fore.YELLOW +
-                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom+ Fore.RESET)
+                    print ("==> " + Fore.YELLOW +
+                           personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
                 else:
                     # doesn't have living space thus add to allocate
                     if self.areroomavailable("OFFICE"):
@@ -63,7 +63,7 @@ class Allocations(object):
                     allocatedroom = self.personelallocation.getroomallocated(
                         "OFFICE", personnel_name)
                     print (
-                        personnel_name + " has already been allocated " + allocatedroom+ Fore.RESET)
+                        personnel_name + " has already been allocated " + allocatedroom + Fore.RESET)
                 else:
                     # person doesn't have a room thus proceed to allocate
                     if self.areroomavailable("OFFICE"):
@@ -83,8 +83,8 @@ class Allocations(object):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
                         "LIVING", personnel_name)
-                    print ( "==> "+ Fore.YELLOW +
-                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom+ Fore.RESET)
+                    print ("==> " + Fore.YELLOW +
+                           personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
                 else:
                     # doesn't have living space thus add to allocate
                     if self.areroomavailable("LIVING"):
@@ -107,8 +107,8 @@ class Allocations(object):
                 # person already has a room so no need to allocate
                 allocatedroom = self.personelallocation.getroomallocated(
                     "OFFICE", personnel_name)
-                print ( "==> "+ Fore.YELLOW +
-                    personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
+                print ("==> " + Fore.YELLOW +
+                       personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
             else:
                 # person doesn't have a room thus proceed to allocate
                 if self.areroomavailable("OFFICE"):
@@ -247,14 +247,10 @@ class Allocations(object):
     """
 
     def get_list_imported_names(self):
-        if os.path.exists('filepath'):
-            with open('filepath') as f:
-                contents = f.read()
-                parser = Fileparser(contents)
-                inputlist = parser.readfile()
-                return inputlist
-        else:
-            print "The file does not exist"
+        parser = Fileparser(os.path.dirname(os.path.realpath("filepath")) + "/input.txt")
+        print os.path.dirname(os.path.realpath("filepath")) + "/input.txt"
+        inputlist = parser.readfile()
+        return inputlist
 
     def readcache(self):
         with open('cache') as f:
