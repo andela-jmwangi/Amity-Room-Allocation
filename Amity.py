@@ -4,8 +4,9 @@
 This shows the usage and options that available for Amity room allocation app
 Usage:
     amity allocaterooms
-    amity viewallocations  [(-r <nameofroom>)]
+    amity viewallocations  [(-r <name_of_room>)]
     amity viewunallocated
+    amity unallocate (-p <fname> <lname> -r <name_of_room>)
     amity (-s | --start)
     amity (-h | --help | --version)
 Options:
@@ -32,6 +33,7 @@ from colorama import init
 from termcolor import cprint
 from pyfiglet import figlet_format
 from colorama import init, Fore, Back, Style
+import fileinput
 
 
 # compares the arguments to determine if all have been entered in correct
@@ -85,9 +87,15 @@ class Amity (cmd.Cmd):
 
     @parser
     def do_viewallocations(self, arg):
-        """Usage: viewallocations [(-r <nameofroom>)]"""
+        """Usage: viewallocations [(-r <name_of_room>)]"""
 
         viewallocations(arg)
+
+    @parser
+    def do_unallocate(self, arg):
+        """Usage: unallocate (-p <fname> <lname> -r <name_of_room>)"""
+
+        unallocate(arg)
 
     @parser
     def do_viewunallocated(self, arg):
@@ -103,6 +111,39 @@ class Amity (cmd.Cmd):
 
 opt = docopt(__doc__, sys.argv[1:])
 
+"""Unallocates a staff his/her given room
+"""
+
+
+def unallocate(docopt_args):
+    personnel_name = ""
+    name_of_room = ""
+    if docopt_args["-p"] and docopt_args["-r"]:
+        personnel_name = docopt_args["<fname>"] + " " + docopt_args["<lname>"]
+        name_of_room = docopt_args["<name_of_room>"]
+        db = DatabaseManager("Amity.sqlite")
+        # query db to find the apecific allocation
+        cursor = db.query("DELETE from Allocations where Personnel_Name = '" +
+                          personnel_name + "' and Room_name = '" + name_of_room + "'")
+        if cursor.rowcount > 0:
+            puts(colored.green(
+                personnel_name + " has been unnallocated room " + name_of_room + " successfully!"))
+            # update to cache
+            f = open("cache", 'r')
+            filedata = f.read()
+            f.close()
+            newdata = filedata.replace(
+                "('" + name_of_room + "', '" + personnel_name + "')", "")
+            f = open("cache", 'w+')
+            f.write(newdata)
+            f.close()
+
+        else:
+            puts(colored.red("The allocation does not exist"))
+    else:
+        puts(colored.red("You failed to supply peronnel name and room name"))
+
+
 """Allocates staff to rooms based on file contents
 """
 
@@ -112,27 +153,32 @@ def viewallocations(docopt_args):
     db = DatabaseManager("Amity.sqlite")
     allocations = Allocations("")
     if docopt_args["-r"]:
-        specific_room = docopt_args["<nameofroom>"]
-        print("\n" + Back.GREEN + specific_room +
-              " (" + rooms.get_room_type(specific_room) + ")" + Back.RESET)
+        specific_room = docopt_args["<name_of_room>"]
+        print("\n" + Back.WHITE + Fore.RED + specific_room +
+              " (" + rooms.get_room_type(specific_room) + ")" + Back.RESET + Fore.RESET)
         cursor = db.query(
             "SELECT * from Allocations where Room_name = '" + specific_room + "'")
-        for row in cursor:
-            personnel_name = row[1]
-            personnel_type = row[4]
-            print Fore.YELLOW + personnel_name + ", ",
+        if len(cursor.fetchall()) > 0:
+            cursor2 = db.query(
+                "SELECT * from Allocations where Room_name = '" + specific_room + "'")
+            for row in cursor2:
+                personnel_name = row[1]
+                personnel_type = row[4]
+                print Fore.GREEN + personnel_name + ", ",
+        else:
+            puts(colored.red("No allocations for this room"))
         print "\n" + Fore.RESET
     else:
         list_rooms = allocations.getalloccupiedrooms()
         for room in list_rooms:
-            print("\n" + Back.GREEN + room +
-                  " (" + rooms.get_room_type(room) + ")" + Back.RESET)
+            print("\n" + Back.WHITE + Fore.RED + room +
+                  " (" + rooms.get_room_type(room) + ")" + Back.RESET + Fore.RESET)
             cursor = db.query(
                 "SELECT * from Allocations where Room_name = '" + room + "'")
             for row in cursor:
                 personnel_name = row[1]
                 personnel_type = row[4]
-                print Fore.YELLOW + personnel_name + ", ",
+                print Fore.GREEN + personnel_name + ", ",
 
             print "\n" + Fore.RESET
 
@@ -165,21 +211,23 @@ def allocaterooms(docopt_args):
         allocations_list = allocation.allocate()
         if len(allocations_list) > 0:
             puts(colored.green(str(len(allocations_list)) +
-                             " people allocated successfully. Do you wish to view them? (y)(n)"))
+                               " people allocated successfully. Do you wish to view them? (y)(n)"))
             answer = raw_input(">")
-            if answer == "y":
-                dict = {}
+            # allow user to view allocated people
+            if answer == "y" or answer == "Y":
+                allocation_map = {}
+                # loop through list of allocations
                 for item in allocations_list:
                     for item2 in item:
-                        if item2[0] in dict:
-                            dict[item2[0]].append(item2[1])
+                        if item2[0] in allocation_map:
+                            allocation_map[item2[0]].append(item2[1])
                         else:
-                            dict[item2[0]] = []
-                            dict[item2[0]].append(item2[1])
+                            allocation_map[item2[0]] = []
+                            allocation_map[item2[0]].append(item2[1])
 
-                for room_name,occupants in dict.iteritems():
-                    puts(colored.green(room_name))
-                    print ",".join(occupants)
+                for room_name, occupants in allocation_map.iteritems():
+                    puts(colored.green(room_name))  # prints room name
+                    print ",".join(occupants)  # prints occupants in the room
                     print "\n"
             else:
                 return
@@ -190,7 +238,7 @@ def allocaterooms(docopt_args):
 
 
 def savefilepath(path):
-    with open("filepath", "w") as text_file:
+    with open("filepath", "w+") as text_file:
         text_file.write(path)
 
 

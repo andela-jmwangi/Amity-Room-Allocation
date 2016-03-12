@@ -40,19 +40,6 @@ class AllocationTests(unittest.TestCase):
         list_rooms = allocations.getavailablerooms("DummyRoomType")
         self.assertEquals(len(list_rooms), 0)
 
-    """Tests whether function returns an rooms that have atleast one occupant
-    """
-
-    def test_getalloccupiedrooms(self):
-        allocations = Allocations(
-            [["DummyName", "DummyPersonType", "DummyResiding"]])
-        # update all room current occupants to sero
-        db = DatabaseManager("Amity.sqlite")
-        # set all Curppl columns to zero
-        db.query("UPDATE Rooms set Curppl = '0'")
-        list_rooms = allocations.getalloccupiedrooms()
-        self.assertEquals(len(list_rooms), 0)
-
     """Tests whether function actually randomizes list passed to it
     """
 
@@ -76,8 +63,26 @@ class AllocationTests(unittest.TestCase):
         allocations.saveallocation(
             "TestName", "Testroomname", "Testroomtype", "Testpersonneltype")  # insert record
         cursor = db.query("SELECT * from Allocations")
-        rows_after = len(cursor.fetchall())  # fetch rows after insert to compare
+        # fetch rows after insert to compare
+        rows_after = len(cursor.fetchall())
+        db.query(
+            "DELETE FROM Allocations where Personnel_Name = 'TestName'")
         self.assertGreater(rows_after, rows_before)
+
+    """Tests if can allocate already having living space room
+    """
+
+    def test_already_having_room(self):
+        # insert record with ling space
+        db = DatabaseManager("Amity.sqlite")
+        db.query(
+            "INSERT INTO Allocations (Personnel_Name,Room_type,Room_name,Personnel_type) VALUES('TestUnique','LIVING','TESTROOM','STAFF')")
+        allocations = Allocations(
+            [["TestUnique", "STAFF", "Y"]])
+        list_allocations = allocations.allocate()
+        db.query(
+            "DELETE FROM Allocations where Personnel_Name = 'TestUnique'")
+        self.assertTrue(len(list_allocations), 0)
 
     """Tests allocate functionality
     """
@@ -85,14 +90,47 @@ class AllocationTests(unittest.TestCase):
     def test_allocate(self):
         allocations = Allocations(
             [["DummyName", "DummyPersonType", "Y"]])
-        list_allocated = allocations.allocate() 
-        self.assertLessEqual(len(list_allocated),1)
+        list_allocated = allocations.allocate()
+        db = DatabaseManager("Amity.sqlite")
+        db.query(
+            "DELETE FROM Allocations where Personnel_Name = 'DummyName'")
+        self.assertLessEqual(len(list_allocated), 1)
 
-    # """Tests function to determine if it returns rooms that have been unallocated
-    # """
-    # def test_unallocated(self):
-    #     allocations = Allocations(
-    #         [["DummyName", "DummyPersonType", "Dummyzz"]])
-    #     allocations.allocate()
-    #     list_unallocated = allocations.unallocated()
-    #     self.assertEquals(type(list_unallocated),set) 
+    """Tests allocate only office
+    """
+
+    def test_allocate_only_office(self):
+        allocations = Allocations(
+            [["DummyName", "STAFF", "N"]])
+        list_allocated = allocations.allocate()
+        db = DatabaseManager("Amity.sqlite")
+        db.query(
+            "DELETE FROM Allocations where Personnel_Name = 'DummyName'")
+        self.assertLessEqual(len(list_allocated), 1)
+
+    """Tests function to determine if it returns rooms that have been unallocated
+    """
+
+    def test_unallocated(self):
+        allocations = Allocations(
+            [["DummyName", "DummyPersonType", "Dummyzz"]])
+        allocations.allocate()
+        list_unallocated = allocations.unallocated()
+        db = DatabaseManager("Amity.sqlite")
+        db.query(
+            "DELETE FROM Allocations where Personnel_Name = 'DummyName'")
+        self.assertEquals(type(list_unallocated), list)
+
+    """Tests whether function returns an rooms that have atleast
+        one occupant
+    """
+
+    def test_getalloccupiedrooms(self):
+        allocations = Allocations(
+            [["DummyName", "DummyPersonType", "DummyResiding"]])
+        # update all room current occupants to sero
+        db = DatabaseManager("Amity.sqlite")
+        # set all Curppl columns to zero
+        db.query("UPDATE Rooms set Curppl = '0'")
+        list_rooms = allocations.getalloccupiedrooms()
+        self.assertEquals(len(list_rooms), 0)

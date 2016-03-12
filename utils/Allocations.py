@@ -1,4 +1,3 @@
-
 from db.DatabaseManager import DatabaseManager
 from models.Personnel import Personnel
 import random
@@ -222,8 +221,9 @@ class Allocations(object):
                 personnel_name, personnel_type, residing))
 
         list2 = [x for x in self.qualifiedcandidates if x != []]
-        with open("cache", "w") as text_file:
-            text_file.write(str(list2))
+        if len(list2) > 0:
+            with open("cache", "w+") as text_file:
+                text_file.write(str(list2))
         return list2
 
     """Retrieves a list of unallocated personnel
