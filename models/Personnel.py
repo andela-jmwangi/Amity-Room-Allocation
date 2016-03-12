@@ -29,7 +29,7 @@ class Personnel(object):
             if count <= 0:
                 list_unallocated.append(name)
 
-        for name in allocatedlist:
+        for name in originallist:
             cursor = self.db.query(
                 "SELECT * from Allocations where Personnel_Name = '" + name.replace("'", "") + "'")
             count = len(cursor.fetchall())
