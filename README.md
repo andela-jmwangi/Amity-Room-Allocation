@@ -13,6 +13,11 @@ Clone the repo
 git clone https://github.com/andela-jmwangi/Amity-Room-Allocation.git
 ```
 
+Fetch from feature-review
+```
+git fetch origin feature-review
+```
+
 Navigate to the root folder
 ``` 
 cd amity-room-allocation 
