@@ -17,7 +17,6 @@ Options:
 
 from Tkinter import Tk
 import tkFileDialog
-from tkFileDialog import askopenfilename
 import sys
 import cmd
 from docopt import docopt, DocoptExit
@@ -26,22 +25,13 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 from utils.Fileparser import Fileparser
 from db.DatabaseManager import DatabaseManager
-from random import randint
 from utils.Allocations import Allocations
 from models.Rooms import Rooms
-from clint.textui import colored, puts, indent
-from colorama import init
-from termcolor import cprint
-from pyfiglet import figlet_format
-from colorama import init, Fore, Back, Style
-import fileinput
-
-
-# compares the arguments to determine if all have been entered in correct
-# manner
+from clint.textui import colored, puts
 
 
 def parser(func):
+    """compares args to determine if all have been entered in correct manner"""
 
     def fn(self, arg):
         try:
@@ -68,12 +58,10 @@ def parser(func):
     return fn
 
 
-"""Class overrides method parser so as to validate input.The input arguments
-    are mapped to respective methods
-"""
-
-
 class Amity (cmd.Cmd):
+
+    """Class overrides method parser so as to validate input.The input arguments
+    are mapped to respective methods """
 
     prompt = '(Amity): '
 
@@ -81,7 +69,7 @@ class Amity (cmd.Cmd):
     def do_allocaterooms(self, arg):
         """Usage: allocate """
 
-        allocaterooms(arg)
+        allocate_rooms(arg)
 
     def quit(self):
         self.root.destroy
@@ -90,7 +78,7 @@ class Amity (cmd.Cmd):
     def do_viewallocations(self, arg):
         """Usage: viewallocations [(-r <name_of_room>)]"""
 
-        viewallocations(arg)
+        view_allocations(arg)
 
     @parser
     def do_unallocate(self, arg):
@@ -102,7 +90,7 @@ class Amity (cmd.Cmd):
     def do_viewunallocated(self, arg):
         """Usage: viewunallocated """
 
-        viewunallocated(arg)
+        view_unallocated(arg)
 
     @parser
     def do_reset(self, arg):
@@ -119,10 +107,9 @@ class Amity (cmd.Cmd):
 opt = docopt(__doc__, sys.argv[1:])
 
 
-"""Resets all allocations
-"""
-
 def reset(docopt_args):
+    """Resets all allocations"""
+
     puts(colored.green("Are you sure you want to reset allocations? (y)(n)"))
     answer = raw_input(">")
     if answer == "y" or answer == "Y":
@@ -133,11 +120,9 @@ def reset(docopt_args):
         puts(colored.green("Allocations reset successfully!"))
 
 
-"""Unallocates a staff his/her given room
-"""
-
-
 def unallocate(docopt_args):
+    """Unallocates a staff his/her given room"""
+
     personnel_name = ""
     name_of_room = ""
     if docopt_args["-p"] and docopt_args["-r"]:
@@ -166,11 +151,9 @@ def unallocate(docopt_args):
         puts(colored.red("You failed to supply peronnel name and room name"))
 
 
-"""Allocates staff to rooms based on file contents
-"""
+def view_allocations(docopt_args):
+    """Allocates staff to rooms based on file contents"""
 
-
-def viewallocations(docopt_args):
     rooms = Rooms()
     db = DatabaseManager("Amity.sqlite")
     allocations = Allocations("")
@@ -185,7 +168,6 @@ def viewallocations(docopt_args):
                 "SELECT * from Allocations where Room_name = '" + specific_room + "'")
             for row in cursor2:
                 personnel_name = row[1]
-                personnel_type = row[4]
                 print Fore.GREEN + personnel_name + ", ",
         else:
             puts(colored.red("No allocations for this room"))
@@ -199,13 +181,12 @@ def viewallocations(docopt_args):
                 "SELECT * from Allocations where Room_name = '" + room + "'")
             for row in cursor:
                 personnel_name = row[1]
-                personnel_type = row[4]
                 print Fore.GREEN + personnel_name + ", ",
 
             print "\n" + Fore.RESET
 
 
-def viewunallocated(docopt_args):
+def view_unallocated(docopt_args):
     allocations = Allocations("")
     unallocated = allocations.unallocated()
     if len(unallocated) > 0:
@@ -217,7 +198,7 @@ def viewunallocated(docopt_args):
         print "No unallocated people found."
 
 
-def allocaterooms(docopt_args):
+def allocate_rooms(docopt_args):
     root = Tk()
     root.withdraw()
     root.update()
@@ -225,7 +206,7 @@ def allocaterooms(docopt_args):
         parent=root, mode='rb', title='Choose a file')
     if file:
         # savefile path for future use
-        savefilepath(file.name)
+        save_file_path(file.name)
         # read file to get list
         parser = Fileparser(file.name)
         inputlist = parser.readfile()
@@ -236,7 +217,7 @@ def allocaterooms(docopt_args):
                                " people allocated successfully. Do you wish to view them? (y)(n)"))
             answer = raw_input(">")
             # allow user to view allocated people
-            if answer == "y" or answer == "Y":
+            if answer.lower() == "y":
                 allocation_map = {}
                 # loop through list of allocations
                 for item in allocations_list:
@@ -259,12 +240,12 @@ def allocaterooms(docopt_args):
     root.destroy()
 
 
-def savefilepath(path):
+def save_file_path(path):
     with open("filepath", "w+") as text_file:
         text_file.write(path)
 
 
-def showwelcomemsg():
+def show_welcome_msg():
     init(strip=not sys.stdout.isatty())  # strip colors if stdout is redirected
     cprint(figlet_format('Amity', font='starwars'),
            'green', attrs=['bold'])
@@ -272,13 +253,10 @@ def showwelcomemsg():
           Style.DIM + '\n(type help for a list of commands.)' + Style.NORMAL)
 
 
-"""starts application when -start is specified
-"""
-
 if opt['--start']:
+    """starts application when -start is specified"""
 
-    showwelcomemsg()
+    show_welcome_msg()
     Amity().cmdloop()  # creates the REPL
 
 print(opt)
-

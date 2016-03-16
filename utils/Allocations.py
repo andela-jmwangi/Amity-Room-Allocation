@@ -40,22 +40,18 @@ class Allocations(object):
                            personnel_name + " has already been allocated " + Fore.GREEN + allocatedroom + Fore.RESET)
                 else:
                     # doesn't have living space thus add to allocate
-                    if self.areroomavailable("OFFICE"):
+                    if self.areroomavailable("LIVING"):
                         # There is an living space available, proceed to
                         # add to list of qualifiedpersonsliving
 
-                        room_name = self.getrandomroom("OFFICE")
+                        room_name = self.getrandomroom("LIVING")
                         if len(room_name) > 0:
                             allocations_list.append(
                                 (room_name, personnel_name))
                             self.saveallocation(
-                                personnel_name, room_name, "OFFICE", personnel_type)
+                                personnel_name, room_name, "LIVING", personnel_type)
 
-                    else:
-                        # There is no living space available, thus inform
-                        # user.
-                        print (personnel_name +
-                               "  =>  Sorry all living spaces have already been taken")
+                    
             else:
                 # allocate only office
                 if self.hasroom(personnel_name, "OFFICE"):
@@ -75,10 +71,7 @@ class Allocations(object):
                                 (room_name, personnel_name))
                             self.saveallocation(
                                 personnel_name, room_name, "OFFICE", personnel_type)
-                    else:
-                        # There is no office spot available, thus inform user.
-                        print (personnel_name +
-                               "Sorry all office spots have already been taken")
+                    
                 if self.hasroom(personnel_name, "LIVING"):
                     # no need to allocate living.
                     allocatedroom = self.personelallocation.getroomallocated(
@@ -96,11 +89,6 @@ class Allocations(object):
                                 (room_name, personnel_name))
                             self.saveallocation(
                                 personnel_name, room_name, "LIVING", personnel_type)
-                    else:
-                        # There is no living space available, thus inform
-                        # user.
-                        print (personnel_name +
-                               "Sorry all living spaces have already been taken")
         else:
             # allocate only office
             if self.hasroom(personnel_name, "OFFICE"):
@@ -120,10 +108,7 @@ class Allocations(object):
                             (room_name, personnel_name))
                         self.saveallocation(
                             personnel_name, room_name, "OFFICE", personnel_type)
-                else:
-                    # There is no office spot available, thus inform user.
-                    print (personnel_name +
-                           "Sorry all office spots have already been taken")
+                
 
         return allocations_list
 
