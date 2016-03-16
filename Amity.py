@@ -23,7 +23,7 @@ from docopt import docopt, DocoptExit
 from colorama import init, Fore, Back, Style
 from termcolor import cprint
 from pyfiglet import figlet_format
-from utils.Fileparser import Fileparser
+from utils.FileParser import FileParser
 from db.DatabaseManager import DatabaseManager
 from utils.Allocations import Allocations
 from models.Rooms import Rooms
@@ -173,7 +173,7 @@ def view_allocations(docopt_args):
             puts(colored.red("No allocations for this room"))
         print "\n" + Fore.RESET
     else:
-        list_rooms = allocations.getalloccupiedrooms()
+        list_rooms = allocations.get_all_occupied_rooms()
         for room in list_rooms:
             print("\n" + Back.WHITE + Fore.RED + room +
                   " (" + rooms.get_room_type(room) + ")" + Back.RESET + Fore.RESET)
@@ -208,9 +208,9 @@ def allocate_rooms(docopt_args):
         # savefile path for future use
         save_file_path(file.name)
         # read file to get list
-        parser = Fileparser(file.name)
-        inputlist = parser.readfile()
-        allocation = Allocations(inputlist)
+        parser = FileParser(file.name)
+        input_list = parser.read_file()
+        allocation = Allocations(input_list)
         allocations_list = allocation.allocate()
         if len(allocations_list) > 0:
             puts(colored.green(str(len(allocations_list)) +

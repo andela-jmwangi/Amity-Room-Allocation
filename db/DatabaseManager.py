@@ -11,8 +11,8 @@ class DatabaseManager(object):
         self.conn = sqlite3.connect(db)  # connects to Amity.sqlite database
         self.cur = self.conn.cursor()
         # checks if atleast 1 table exists (sqlite_sequence)
-        if self.gettablecount() < 2:
-            self.createtables()  # if so, create the remaining 3
+        if self.get_table_count() < 2:
+            self.create_tables()  # if so, create the remaining 3
 
     def query(self, arg):
         """Performs a query to the database based on the supplied
@@ -28,7 +28,7 @@ class DatabaseManager(object):
         # Closes the connection to the database to prevent database locks
         self.conn.close()
 
-    def getrooms(self):
+    def get_rooms(self):
         """Returns list of predefined rooms"""
 
         offices = {'Valhalla': 6, 'Turqois': 4, 'Oculus': 5, 'Hogwarts': 6, 'Camelot':
@@ -40,14 +40,14 @@ class DatabaseManager(object):
         all_rooms = {'OFFICE': offices, 'LIVING': living_spaces}
         return all_rooms
 
-    def gettablecount(self):
+    def get_table_count(self):
         """Gets a the number of tables present in the database"""
 
         cursor = self.query(
             "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name")
         return len(cursor.fetchall())
 
-    def createtables(self):
+    def create_tables(self):
         """Creates database tables if they does not exist and populates Rooms table"""
 
         self.query(
@@ -56,8 +56,8 @@ class DatabaseManager(object):
             "CREATE Table if not exists Staff (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Residing TEXT NOT NULL, Category TEXT NOT NULL)")
         self.query(
             "CREATE Table if not exists Rooms (_id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Maxppl INT NOT NULL,Curppl INT NOT NULL, Room_type TEXT NOT NULL)")
-        roomslist = self.getrooms()  # get all rooms
-        for room_type, data in roomslist.iteritems():
+        rooms_list = self.get_rooms()  # get all rooms
+        for room_type, data in rooms_list.iteritems():
             for name, num in data.iteritems():
                 self.query("INSERT INTO Rooms (Name, Maxppl, Curppl, Room_type)VALUES ('" +
                            name + "', '" + str(num) + "','0','" + room_type + "')")
