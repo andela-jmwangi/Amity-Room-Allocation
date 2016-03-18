@@ -1,0 +1,5 @@
+htmlcov
+.coverage
+.coveralls.yml
+coverage_html
+*.pyc
