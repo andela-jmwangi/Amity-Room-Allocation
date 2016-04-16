@@ -63,7 +63,7 @@ class Amity (cmd.Cmd):
     """Class overrides method parser so as to validate input.The input arguments
     are mapped to respective methods """
 
-    prompt = '(Amity): '
+    prompt = '🏠 (Amity): '
 
     @parser
     def do_allocaterooms(self, arg):

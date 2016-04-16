@@ -1,0 +1,885 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"q",
+				"question_text"
+			],
+			[
+				"Ch",
+				"CharField	class"
+			],
+			[
+				"Da",
+				"DateTimeField	class"
+			],
+			[
+				"roo",
+				"room_type	forstmt"
+			],
+			[
+				"rooms",
+				"roomslist	statement"
+			],
+			[
+				"all",
+				"all_rooms"
+			],
+			[
+				"ad",
+				"set_advertiser_and_category	function"
+			],
+			[
+				"test_",
+				"test_routes	module"
+			],
+			[
+				"deal",
+				"Deal	class"
+			],
+			[
+				"htt",
+				"HttpResponseRedirect	class"
+			],
+			[
+				"asser",
+				"assertIsInstance	function"
+			],
+			[
+				"re",
+				"response	statement"
+			],
+			[
+				"as",
+				"assertEquals	statement"
+			],
+			[
+				"co",
+				"contrib	module"
+			],
+			[
+				"Htt",
+				"HttpResponseRedirect	class"
+			],
+			[
+				"De",
+				"Deal	class"
+			],
+			[
+				"ass",
+				"assertEqual	function"
+			],
+			[
+				"cl",
+				"client	statement"
+			],
+			[
+				"fil",
+				"Fileparser	class"
+			],
+			[
+				"is",
+				"isresiding	function"
+			],
+			[
+				"f",
+				"Fileparser	module"
+			],
+			[
+				"Pe",
+				"personnel_type"
+			],
+			[
+				"R",
+				"Room_name"
+			],
+			[
+				"lis",
+				"list_unallocated	statement"
+			],
+			[
+				"file",
+				"filepath	statement"
+			],
+			[
+				"allo",
+				"allocations	statement"
+			],
+			[
+				"d",
+				"db	statement"
+			],
+			[
+				"list",
+				"list2	statement"
+			],
+			[
+				"row",
+				"rowcount	instance"
+			],
+			[
+				"RE",
+				"RESET	statement"
+			],
+			[
+				"gr",
+				"GREEN	statement"
+			],
+			[
+				"name",
+				"name_of_room	statement"
+			],
+			[
+				"per",
+				"personnel_name	statement"
+			],
+			[
+				"Allo",
+				"Allocations"
+			],
+			[
+				"nam",
+				"name_of_room	statement"
+			],
+			[
+				"perso",
+				"personnel_name"
+			],
+			[
+				"Res",
+				"RESET	statement"
+			],
+			[
+				"al",
+				"allocations_list	statement"
+			],
+			[
+				"ro",
+				"rows_after	statement"
+			],
+			[
+				"ra",
+				"randomized_list	statement"
+			],
+			[
+				"assert",
+				"assertNotEqual	function"
+			],
+			[
+				"D",
+				"DummyName"
+			],
+			[
+				"res",
+				"RESET	statement"
+			],
+			[
+				"y",
+				"YELLOW	statement"
+			],
+			[
+				"Fie",
+				"Fileparser	module"
+			],
+			[
+				"num",
+				"num_tables	statement"
+			],
+			[
+				"nu",
+				"num_tables	statement"
+			],
+			[
+				"Per",
+				"Personnel_Name"
+			],
+			[
+				"get",
+				"get_room_type	function"
+			],
+			[
+				"read",
+				"readcache"
+			],
+			[
+				"qu",
+				"qualifiedcandidates"
+			],
+			[
+				"or",
+				"originallist	param"
+			],
+			[
+				"Roo",
+				"Room_name"
+			],
+			[
+				"pers",
+				"persons	statement"
+			],
+			[
+				"room",
+				"room"
+			],
+			[
+				"whi",
+				"WHITE	statement"
+			],
+			[
+				"que",
+				"query_string	statement"
+			],
+			[
+				"spe",
+				"spec_room	statement"
+			],
+			[
+				"root",
+				"room_type"
+			],
+			[
+				"imp",
+				"importedallocations"
+			],
+			[
+				"liv",
+				"livingspace"
+			],
+			[
+				"g",
+				"getroomallocated	function"
+			],
+			[
+				"im",
+				"importedallocations	param"
+			],
+			[
+				"alloca",
+				"Allocations	class"
+			],
+			[
+				"ran",
+				"randomisedlist"
+			],
+			[
+				"ca",
+				"category	param"
+			],
+			[
+				"Mat",
+				"Material-Theme"
+			],
+			[
+				"ite",
+				"iteritems	function"
+			],
+			[
+				"askop",
+				"askopenfilename	function"
+			],
+			[
+				"dir",
+				"dirname	statement"
+			],
+			[
+				"in",
+				"inputlist	statement"
+			],
+			[
+				"pa",
+				"pathtofile	param"
+			],
+			[
+				"max",
+				"maxpeople	statement"
+			],
+			[
+				"B",
+				"BLUE	statement"
+			],
+			[
+				"body",
+				"bodynote	statement"
+			],
+			[
+				"de",
+				"deletenotesfromcloud"
+			],
+			[
+				"nos",
+				"noteoperations	module"
+			],
+			[
+				"r",
+				"red	function"
+			],
+			[
+				"impo",
+				"importnotes	function"
+			],
+			[
+				"app",
+				"append	function"
+			],
+			[
+				"ge",
+				"gettime"
+			],
+			[
+				"tim",
+				"timeString	statement"
+			],
+			[
+				"exp",
+				"exportformat	statement"
+			],
+			[
+				"user",
+				"username	statement"
+			],
+			[
+				"ex",
+				"exists	param"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"note",
+				"notetext	statement"
+			],
+			[
+				"not",
+				"noteslist	statement"
+			],
+			[
+				"notes",
+				"noteslist	statement"
+			],
+			[
+				"s",
+				"synctocloud	function"
+			],
+			[
+				"db",
+				"dbmgr	statement"
+			],
+			[
+				"docop",
+				"docopt_args"
+			],
+			[
+				"pr",
+				"prompt	function"
+			],
+			[
+				"tr",
+				"True	keyword"
+			],
+			[
+				"no",
+				"noteid	statement"
+			],
+			[
+				"st",
+				"status	statement"
+			],
+			[
+				"doc",
+				"docopt_args	param"
+			],
+			[
+				"No",
+				"NoteOperations	import"
+			],
+			[
+				"to",
+				"totalshippingcost"
+			],
+			[
+				"shi",
+				"shippingcost"
+			],
+			[
+				"che",
+				"checked"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
+				"pri",
+				"pricecold"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 384.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"sublimerepl",
+				"SublimeREPL: Python"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 475.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.logcommands",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/Python.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/PYTHON.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/Users/JackMwangi/projects/djangopractice/mysite/mysite/settings.py",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/Pylinter/Pylinter.sublime-settings",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils/FileParser.py",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/Pylinter.sublime-settings",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils/Allocations.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Amity.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models/Personnel.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/test_database_manager.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/cache",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/test_file_parser.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/test_allocations.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models/Rooms.py",
+		"/Users/JackMwangi/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils/Fileparser.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/test_personnel.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/test_rooms.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/testinput.txt",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils/input.txt",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db/DatabaseManager.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/input.txt",
+		"/Users/JackMwangi/projects/troupon/troupon/cart/tests/test_views.py",
+		"/Users/JackMwangi/projects/troupon/troupon/deals/tests/test_routes.py",
+		"/Users/JackMwangi/projects/troupon/troupon/merchant/tests/test_views.py",
+		"/Users/JackMwangi/Documents/proj/mau tea/SmartWeigh/src/com/pima/pimapp/Weigh.java",
+		"/Users/JackMwangi/projects/djangopractice/mysite/manage.py",
+		"/Users/JackMwangi/-There will be an expectations meeting",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/README.md",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/.gitignore",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/__init__.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db/__init__.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db/.gitignore",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models/.gitignore",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models/__init__.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils/__init__.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/.coveragerc",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/.gitignore",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/.coverage",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/.coveralls.yml",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/filepath",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/requirements.txt",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Amity.sqlite",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils/.gitignore",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/.travis.yml",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Rooms.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Personnel.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/DatabaseManager.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Allocations.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/.coverals.yml",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Fileparser.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests/test_lists.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/test_personnel.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/test_lists.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/__init__.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/Staff.py",
+		"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/(Title)Amity-room-allocation",
+		"/Users/JackMwangi/Documents/PreTraining/ApiRockstar/package.json",
+		"/Hi Kim,",
+		"/Users/JackMwangi/Documents/untitled folder/coolstuff.txt",
+		"/Users/JackMwangi/Desktop/tests/gittests/andela-bc-5/tdd/mathx/hackerrank.com",
+		"/Users/JackMwangi/Documents/proj/chebango/new app/SmartWeigh/src/com/pima/pimapp/DatabaseHelper.java",
+		"/Users/JackMwangi/Movies/index.php",
+		"/Users/JackMwangi/Documents/weighreflection.rtf",
+		"/Users/JackMwangi/Desktop/scrible/README.rst",
+		"/Users/JackMwangi/Music/Scrible/scrible/notes/scrible.py",
+		"/Users/JackMwangi/Music/Scrible/setup.py",
+		"/Users/JackMwangi/Desktop/scrible/README.rst.md",
+		"/Users/JackMwangi/Desktop/scrible/scrible/tests/test_sync.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/tests/test_database.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/notes/scrible.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/notes/noteoperations.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/sync/cloudsync.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/sync/progress.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/notes/DatabaseManager.py",
+		"/Users/JackMwangi/Desktop/scrible/mynotes.csv",
+		"/Users/JackMwangi/Desktop/What they wanna hear			-what did you do",
+		"/Users/JackMwangi/Desktop/scrible/setup.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/sync/sync.py",
+		"/Users/JackMwangi/Desktop/scrible/MANIFEST.in",
+		"/Users/JackMwangi/Desktop/scrible/scrible/notes/doctry.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/notes/scribletest.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/notes/__init__.py",
+		"/Users/JackMwangi/Desktop/scrible/scrible/scrible.py",
+		"/Users/JackMwangi/Desktop/Scrible/scrible/test.py",
+		"/Users/JackMwangi/Desktop/tests/blaba.py",
+		"/Users/JackMwangi/Desktop/tests/tdd/mathx/(feature) Add",
+		"/Users/JackMwangi/Desktop/Scrible/scrible/notes/__init__.py",
+		"/Users/JackMwangi/Desktop/tests/tdd/mathx/testscreen.py",
+		"/Users/JackMwangi/Desktop/tests/kwagsclasses.py",
+		"/Users/JackMwangi/Desktop/tests/tdd/mathx/binary.py",
+		"/test.py",
+		"/Applications/XAMPP/xamppfiles/htdocs/MOH Project/js/myjs.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/MOH Project/pages/flot.html",
+		"/Users/JackMwangi/Desktop/startbootstrap-sb-admin-2-1.0.7/pages/forms.html",
+		"/Users/JackMwangi/Music/S/settings.gradle",
+		"/Users/JackMwangi/Music/S/build.gradle",
+		"/Users/JackMwangi/Documents/WORKSPACE/settings.gradle",
+		"/Users/JackMwangi/Documents/WORKSPACE/build.gradle",
+		"/Users/JackMwangi/Documents/WORKSPACE/shopofficergradle/gradle/wrapper/gradle-wrapper.properties",
+		"/Users/JackMwangi/Documents/WORKSPACE/SmartWeigh/src/com/pima/pimapp/MainActivity.java",
+		"/Users/JackMwangi/Downloads/farmers.sql",
+		"/Users/JackMwangi/Documents/proj/mkulima bora/SmartWeigh/src/com/pima/pimapp/Weigh.java",
+		"/Users/JackMwangi/Downloads/index.php",
+		"/Users/JackMwangi/Documents/proj/aspendos/new app/v2 with reflection/Auto Launch/safcmserver/SmartWeigh/src/com/pima/pimapp/SyncFarmers.java",
+		"/Users/JackMwangi/CD/PimAppDownloader/index.php",
+		"/Users/JackMwangi/Documents/proj/nyala/new/SmartWeigh/src/com/pima/pimapp/Weigh.java",
+		"/Users/JackMwangi/Downloads/JdbcSQLServerConnection.java",
+		"/Users/JackMwangi/CD/pimapp.sql",
+		"/Users/JackMwangi/Documents/proj/tumaini reflection/stable/SmartWeigh/src/com/pima/pimapp/Weigh.java",
+		"/Users/JackMwangi/Documents/proj/aspendos/new app/v2 with reflection/SmartWeigh/src/com/pima/pimapp/Weigh.java",
+		"/Users/JackMwangi/Pictures/platetest/UpdatedFarmersAspendos.csv",
+		"/Users/JackMwangi/Downloads/Weight 4.json",
+		"/Users/JackMwangi/Downloads/Weight 3.json",
+		"/Users/JackMwangi/Pictures/logopath",
+		"/Users/JackMwangi/Pictures/platetest/logopath.ai",
+		"/Users/JackMwangi/Documents/WORKSPACE/AndroidResideMenu-master/ResideMenu/src/com/special/ResideMenu/ResideMenu.java",
+		"/Users/JackMwangi/Documents/proj/aspendos/new app/v2 with reflection/SmartWeigh/src/com/pima/pimapp/DatabaseHelper.java",
+		"/Applications/XAMPP/xamppfiles/etc/extra/httpd-xampp.conf",
+		"/Users/JackMwangi/Documents/proj/tumaini reflection/SmartWeigh/src/com/pima/pimapp/Weigh.java",
+		"/Users/JackMwangi/Movies/scalesnip.java"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils",
+			"/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/db,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/models,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/tests,/Users/JackMwangi/Documents/Python Workspace/Checkpoint1/utils",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"FileParser",
+			"savefilepath",
+			"viewallocations",
+			"sorry",
+			"getrooms",
+			"list_offices",
+			"runallocations",
+			"os",
+			"os.pa",
+			"getunallocated",
+			"Fileparse",
+			"insert",
+			"==",
+			"unallocate",
+			"saveallocation",
+			"<fname lname",
+			"y",
+			"fetchall",
+			"getlinecontents",
+			"self.db",
+			"append",
+			"runallocations",
+			"qualifiedpersonsliving",
+			"qualifiedpersonsoffice",
+			"Sorry",
+			"viewunallocated",
+			"importedallocations",
+			"getroomallocated",
+			"getallallocations",
+			"self.allocations",
+			"\")\n",
+			"Personnel",
+			"self",
+			"filter",
+			"has alrea",
+			"FELLOW",
+			"cursor",
+			"getrandomlist",
+			"areroomavailable",
+			"runallocations",
+			"set_trace",
+			"runallocations",
+			"count",
+			"Curpple",
+			"Maxpple",
+			"Allocations",
+			"hasroom",
+			"initrooms",
+			"FILE",
+			"__doc__",
+			"scri",
+			"type",
+			"insertvaluecache",
+			"readvaluescache",
+			"green",
+			"quote",
+			">",
+			"delete",
+			"@docopt_cmd",
+			"search",
+			"GREEN",
+			"stop",
+			"kill",
+			"while",
+			"insertvaluecache",
+			"readvaluescache",
+			"nextquery",
+			"skipnext",
+			"next",
+			"getnotetitle",
+			"print",
+			"num",
+			"cloudsync",
+			"NoteOperations",
+			"ConnectionError",
+			"arenotesindb",
+			"Notes synced",
+			"self.getnotes",
+			"pwd",
+			"isuserincloud",
+			"User created",
+			"savenotestocloud",
+			"isuserincloud",
+			"numrows",
+			"rowcount",
+			"isuserincloud",
+			"getuserpassfromcloud",
+			"isuserincloud",
+			"fetchunsynced",
+			"isuserindb",
+			"intro",
+			"cmdloop",
+			"docopt_example",
+			"000080",
+			"Home",
+			"center",
+			"form",
+			"<td class=\"center\"><input type=\"checkbox\" name=\"query_myTextEditBox\"></td>\n                                            <td class=\"center\"><input type=\"checkbox\" name=\"query_myTextEditBox\"></td>\n                                            <td class=\"center\"><input type=\"checkbox\" name=\"query_myTextEditBox\"></td>",
+			"                                        ",
+			"Placeholder",
+			"Username",
+			"Dashboard",
+			"DashB",
+			"obj",
+			"closeHandler",
+			"background",
+			"sendtoserver",
+			"SyncFarmers",
+			"sendtoserver",
+			"fulldayreport",
+			"printerswitch",
+			"registerreceiver()",
+			"if (bdevice.getAddress().equals(currentprinter)) {",
+			"onDestroy()",
+			"(PimApp)",
+			"bluetoothSocket2",
+			"retryprinter",
+			"andela",
+			"mFileTemp",
+			"mfiletemp",
+			"r-method",
+			"printerswitch",
+			"btnprint",
+			"Sep",
+			"Aug",
+			"Jun",
+			"May",
+			"Apr"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"db",
+			"<file>",
+			"√",
+			"@parser",
+			"'\\033[95m'",
+			"hasnext",
+			"Exception",
+			"428bca",
+			"<td class=\"center\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\" checked></td>\n                                            <td class=\"center\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\" ></td>\n                                            <td class=\"center\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\" ></td>",
+			"Oct"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Checkpoint1.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/Python Workspace/Checkpoint1/Checkpoint1.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
